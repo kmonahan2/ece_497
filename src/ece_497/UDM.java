@@ -6,7 +6,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public interface UDM {
+public class UDM {
 
     // my metaphorical UDR
     private static JTable known_ue;
@@ -18,7 +18,7 @@ public interface UDM {
     private JTable general_bd;
     private JTable data_bd;
     private JTable video_bd;
-    private int count; 
+    private int count;
 
     public UDM() {
         // starting variables
@@ -31,18 +31,100 @@ public interface UDM {
         this.general_bd = JTableBandwidth("general_bd", null);
         this.data_bd = JTableBandwidth("data_bd", null);
         this.video_bd = JTableBandwidth("video_bd", null);
-        this.count = 0; 
+        this.count = 0;
     }
 
-    public void writeToResource(String path, UE ue){
-
+    // Getters
+    public ArrayList<UE> getEntered_ue() {
+        return this.entered_ue;
     }
 
-    public Object readFromResource(String path, UE ue) {
-
+    public JTable getRegistered_ue() {
+        return this.registered_ue;
     }
 
-    // helper
+    public JTable getKnown_ue() {
+        return this.known_ue;
+    }
+
+    public Object getRegistered_UECellValue(int row, int column) {
+        return this.registered_ue.getValueAt(row, column);
+    }
+
+    public Object getKnown_UECellValue(int row, int column) {
+        return this.known_ue.getValueAt(row, column);
+    }
+    
+    public int getGeneral_width() {
+        return this.general_width;
+    }
+
+    public int getData_width() {
+        return this.data_width;
+    }
+
+    public int getVideo_width() {
+        return this.video_width;
+    }
+
+    public JTable getGeneral_bd() {
+        return this.general_bd;
+    }
+
+    public JTable getData_bd() {
+        return this.data_bd;
+    }
+
+    public JTable getVideo_bd() {
+        return this.video_bd;
+    }
+
+    public int getCount() {
+        return this.count;
+    }
+
+    // Setters
+    public void setEntered_ue(ArrayList<UE> entered_ue) {
+        this.entered_ue = entered_ue;
+    }
+
+    public void setRegistered_UECellValue(Object value, int row, int column) {
+        this.registered_ue.setValueAt(value, row, column);
+    }
+
+    public void setKnown_UECellValue(Object value, int row, int column) {
+        this.known_ue.setValueAt(value, row, column);
+    }
+
+    public void setGeneral_width(int general_width) {
+        this.general_width = general_width;
+    }
+
+    public void setData_width(int data_width) {
+        this.data_width = data_width;
+    }
+
+    public void setVideo_width(int video_width) {
+        this.video_width = video_width;
+    }
+
+    public void setGeneral_bd(JTable general_bd) {
+        this.general_bd = general_bd;
+    }
+
+    public void setData_bd(JTable data_bd) {
+        this.data_bd = data_bd;
+    }
+
+    public void setVideo_bd(JTable video_bd) {
+        this.video_bd = video_bd;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    // helper function
     public synchronized void updateDuration() {
         for (int i = 0; i < general_bd.getRowCount(); i++) {
             int temp = 0;
@@ -65,7 +147,7 @@ public interface UDM {
 
     }
 
-    // helper
+    // helper function
     public synchronized JTable JTableBandwidth(String name, UE ue) {
         JTable table = new JTable();
         table.setName(name);
@@ -100,9 +182,9 @@ public interface UDM {
         return table;
     }
 
-    // helper
+    // helper function
     public synchronized JTable JTableRegistered(UE ue) {
-        JTable table = new JTable();  
+        JTable table = new JTable();
         // Create a table model
         DefaultTableModel model = new DefaultTableModel();
         // Headers: UE,Priority,Callbar,Prempt_Capable,Prempt_Vul,AppType
