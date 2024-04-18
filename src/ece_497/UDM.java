@@ -260,16 +260,18 @@ public class UDM {
         TableModel model = table.getModel();
 
         System.out.println();
+        System.out.println("\t* "+db+" Pipe *");
         // print column headers
         for (int i = 0; i < model.getColumnCount(); i++) {
             System.out.print(model.getColumnName(i) + "\t");
         }
+        System.out.println();
 
         // print table data
         for (int row = 0; row < model.getRowCount(); row++) {
             System.out.print("| ");
             for (int col = 0; col < model.getColumnCount(); col++) {
-                System.out.print(String.valueOf(table.getValueAt(row, col)) + "\t");
+                System.out.print(String.valueOf(table.getValueAt(row, col)) + "\t\t");
             }
             System.out.print("| ");
             // blank new line

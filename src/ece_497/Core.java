@@ -176,7 +176,7 @@ public class Core {
                 udm.setData_bd(tempDBD);
                 // print the updated pipe
                 udm.printDB(tempDBD, "Data");
-                // mark ue as allocated
+                // set allocated flag
                 allocated_flag = true;
             } 
             // If there is not sufficient bandwidth free 
@@ -186,92 +186,138 @@ public class Core {
                     // check through the current data pipe
                     for (int p = 0; p < udm.getData_bd().getRowCount(); p++) {
                         // if an existing entry is prempt vulnerable
-                        if ((boolean)udm.getData_bd().getValueAt(p, 3)) {
+                        if ((boolean)udm.getData_bd().getValueAt(p, 2)) {
+                            // notify prempted UE, reset UE Object's values
                             enteredUE.get(p).gotPremptUE();
+                            // replace the values in the bandwidth pipe 
                             dataBD.setValueAt(ue_id, p,0);
+                            dataBD.setValueAt(preVul,p,1);
                             dataBD.setValueAt(preVul,p,2);
                             dataBD.setValueAt(0, p, 5) ;
                             dataBD.setValueAt(BANDALLO, p, 4);
-                            udm.setVideo_bd(videoBD);
+                            // update the data bandwidth pipe in udm
+                            udm.setData_bd(dataBD);
+                            // give the bandwidth to the UE
                             ue.setBandAllo("D", BANDALLO);
+                            // set allocated flag
                             allocated_flag = true;
                         }
                     }
                 }
                 // If the UE is not prempt capable 
                 else {
-                    if (genWidth >= 120) {
+                    // check if general data pipe has enough to spare
+                    if (genWidth >= 60) {
+                        // give UE the bandwidth
                         ue.setBandAllo("G",BANDALLO);
+                        // update the general bandwidth
                         genWidth -= BANDALLO;
+                        // update the availabe general width in the udm
                         udm.setGeneral_width(genWidth);
-                        JTable temp = udm.JTableBandwidth("ue_id", ue);
-                        dataBD.add(temp);
-                        udm.setData_bd(dataBD);
+                       // add entry in udm
+                        JTable tempGBD = makeRow(generalBD, ue);
+                       // print the updated pipe
+                        udm.printDB(tempGBD, "General");
+                        // set allocated flag
                         allocated_flag = true;
                     }
                 }
             }
+            // For Video App 
         } else if (type.equals("V")) {
-            // Handle video type
-            if (videoWidth >= 10) {
-                ue.setBandAllo("V",BANDALLO);
+            // If there is sufficient bandwidth available
+            if (videoWidth >= BANDALLO) {
+                // update the available video bandwidth
                 videoWidth -= BANDALLO;
+                // update to UDM
                 udm.setVideo_width(videoWidth);
+                // give the bandwidth to the UE
+                ue.setBandAllo("V", BANDALLO);
+                // add entry in udm
                 JTable tempVBD = makeRow(videoBD, ue);
-                udm.setVideo_bd(tempVBD);
+                udm.setData_bd(tempVBD);
+                // print the updated pipe
+                udm.printDB(tempVBD, "Video");
+                // set allocated flag
                 allocated_flag = true;
             } else {
+                // If the UE is Prempt Capable
                 if (preCap) {
-                    for (int p = 0; p < videoBD.getRowCount(); p++) {
-                        if ((boolean)videoBD.getValueAt(p,3) && !allocated_flag) {
+                    // check through the current video pipe
+                    for (int p = 0; p < udm.getVideo_bd().getRowCount(); p++) {
+                        // if an existing entry is prempt vulnerable
+                        if ((boolean)udm.getVideo_bd().getValueAt(p, 2)) {
+                            // notify prempted UE, reset UE Object's values
                             enteredUE.get(p).gotPremptUE();
-                            // remove from video_bd
+                            // replace the values in the bandwidth pipe 
                             videoBD.setValueAt(ue_id, p,0);
+                            videoBD.setValueAt(preVul,p,1);
                             videoBD.setValueAt(preVul,p,2);
                             videoBD.setValueAt(0, p, 5) ;
                             videoBD.setValueAt(BANDALLO, p, 4);
+                            // update the video bandwidth pipe in udm
                             udm.setVideo_bd(videoBD);
-                            ue.setBandAllo("V",BANDALLO);
+                            // give the bandwidth to the UE
+                            ue.setBandAllo("V", BANDALLO);
+                            // set allocated flag
                             allocated_flag = true;
                         }
                     }
+                // If the UE is not Prempt Capable
                 } else {
-                    // Handle the case when video bandwidth is insufficient
-                    if (genWidth >= 120) {
+                    // check if general data pipe has enough to spare
+                    if (genWidth >= 60) {
+                        // give UE the bandwidth
                         ue.setBandAllo("G",BANDALLO);
+                        // update the general bandwidth
                         genWidth -= BANDALLO;
+                        // update the availabe general width in the udm
                         udm.setGeneral_width(genWidth);
+                       // add entry in udm
                         JTable tempGBD = makeRow(generalBD, ue);
-                        udm.setGeneral_bd(tempGBD);
+                       // print the updated pipe
+                        udm.printDB(tempGBD, "General");
+                        // set allocated flag
                         allocated_flag = true;
                     }
                 }
             }
         } else if (type.equals("G")) {
             // Handle general type
-            if (genWidth >= 10) {
-                ue.setBandAllo("G",BANDALLO);
+            if (genWidth >= BANDALLO) {
+                // update the available general bandwidth available
                 genWidth -= BANDALLO;
+                // update to UDM
                 udm.setGeneral_width(genWidth);
-                // add new entry to bandwidth 
+                // give the bandwidth to the UE
+                ue.setBandAllo("G", BANDALLO);
+                // add entry in udm
                 JTable tempGBD = makeRow(generalBD, ue);
                 udm.setGeneral_bd(tempGBD);
+                // print the updated pipe
+                udm.printDB(tempGBD, "General");
+                // set allocated flag
                 allocated_flag = true;
             } else {
                 if (preCap) {
-                    for (int p = 0; p < generalBD.getRowCount(); p++) {
-                        // if someone in general is prempt vulnerable and the current ue is not allocated
-                        if ((boolean)generalBD.getValueAt(p, 3) && !allocated_flag) {
+                    // check through the current video pipe
+                    for (int p = 0; p < udm.getGeneral_bd().getRowCount(); p++) {
+                        // if an existing entry is prempt vulnerable
+                        if ((boolean)udm.getGeneral_bd().getValueAt(p, 2)) {
+                            // notify prempted UE, reset UE Object's values
                             enteredUE.get(p).gotPremptUE();
-                            // remove from general
-                            generalBD.setValueAt(ue_id, p,1);
-                            generalBD.setValueAt(preVul,p,3);
+                            // replace the values in the bandwidth pipe 
+                            generalBD.setValueAt(ue_id, p,0);
+                            generalBD.setValueAt(preVul,p,1);
+                            generalBD.setValueAt(preVul,p,2);
                             generalBD.setValueAt(0, p, 5) ;
                             generalBD.setValueAt(BANDALLO, p, 4);
+                            // update the video bandwidth pipe in udm
                             udm.setGeneral_bd(generalBD);
-                            ue.setBandAllo("G",BANDALLO);
+                            // give the bandwidth to the UE
+                            ue.setBandAllo("V", BANDALLO);
+                            // set allocated flag
                             allocated_flag = true;
-
                         }
                     }
                 }
@@ -281,6 +327,7 @@ public class Core {
             allocated_flag = false;
         }
         
+        // update duration, for kicking
         udm.updateDuration();
         return allocated_flag;
     }
