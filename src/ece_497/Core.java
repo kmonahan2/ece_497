@@ -112,6 +112,7 @@ public class Core {
         }
         // update count in UDM
         setCount(count);
+        udm.updateDuration();
         return authResult;
     }
 
@@ -150,6 +151,8 @@ public class Core {
                 data_width -= BANDALLO;
                 ue.setBandAllo("D", BANDALLO);
                 JTable temp = JTableBandwidth("ue_id", ue);
+                
+                
                 getData_bd().add(temp);
                 allocated_flag = true;
             } else {

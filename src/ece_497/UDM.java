@@ -110,14 +110,17 @@ public class UDM {
 
     public void setGeneral_bd(JTable general_bd) {
         this.general_bd = general_bd;
+        printDB(general_bd, "general");
     }
 
     public void setData_bd(JTable data_bd) {
         this.data_bd = data_bd;
+        printDB(data_bd, "data");
     }
 
     public void setVideo_bd(JTable video_bd) {
         this.video_bd = video_bd;
+        printDB(videp_bd, "video");
     }
 
     public void setCount(int count) {
@@ -212,5 +215,26 @@ public class UDM {
 
         return table;
 
+    }
+
+    void printDB(JTable table, String db) {
+        // get the table model
+        TableModel model = table.getModel();
+
+        // print column headers
+        for (int i = 0; i < model.getColumnCount(); i++) {
+            System.out.print(model.getColumnName(i) + "\t");
+        }
+        // blank new line
+        System.out.println();
+
+        // print table data
+        for (int row = 0; row < model.getRowCount(); row++) {
+            for (int col = 0; col < model.getColumnCount(); col++) {
+                System.out.print(model.getValueAt(row, col) + "\t");
+            }
+            // blank new line
+            System.out.println();
+        }
     }
 }
