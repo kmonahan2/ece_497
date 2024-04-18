@@ -1,0 +1,20 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "java (buildArtifact)",
+			"mainClass": "ece_497.Main",
+			"targetPath": "${workspaceFolder}/${workspaceFolderBasename}.jar",
+			"elements": [
+				"${compileOutput}",
+				"${dependencies}"
+			],
+			"problemMatcher": [],
+			"label": "java (buildArtifact): ece_497",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}

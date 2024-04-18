@@ -7,7 +7,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class Main {
     static Core Core = new Core();
-
     public static void main(String[] args) throws Exception {
         
         System.out.println("Welcome to the 5G Network");
@@ -72,7 +71,7 @@ public class Main {
         try {
             BufferedReader br = new BufferedReader(new FileReader(filename));
             String line;
-            while ((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null) throw Exception {
                 String[] data = line.split(","); // Assuming CSV uses comma as delimiter, change accordingly
                 model.addRow(data);
             }
