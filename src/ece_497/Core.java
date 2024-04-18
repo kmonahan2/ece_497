@@ -9,11 +9,10 @@ import javax.swing.table.DefaultTableModel;
 public class Core {
 
     // at the control plane, each function can call udm.
-    private final UDM udm;
+    private final UDM udm = new UDM();
 
     // Constructor \\
     public Core() {
-        this.udm = new UDM();
     }
 
     // AMF \\
@@ -133,7 +132,12 @@ public class Core {
         ARP = PCF(ue);
         // return an hashmap of policy and allo?
         // set bandallo in pcf based on priority and app type
-        int BANDALLO = ARP.get("band");
+        int BANDALLO = 0;
+        try {
+            BANDALLO = ARP.get("gfbr");
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
         // System.out.println("the band allo is: "+Integer.toString(BANDALLO));
         
         // Retrieve UE properties

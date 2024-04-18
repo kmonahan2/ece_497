@@ -71,9 +71,13 @@ public class Main {
         try {
             BufferedReader br = new BufferedReader(new FileReader(filename));
             String line;
-            while ((line = br.readLine()) != null) throw Exception {
-                String[] data = line.split(","); // Assuming CSV uses comma as delimiter, change accordingly
-                model.addRow(data);
+            try {
+                while ((line = br.readLine()) != null) {
+                    String[] data = line.split(","); // Assuming CSV uses comma as delimiter, change accordingly
+                    model.addRow(data);
+                } 
+            } catch(Exception e) {
+                    e.printStackTrace();
             }
             br.close();
         } catch (Exception e) {
