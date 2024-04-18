@@ -1,9 +1,16 @@
 package ece_497;
 import java.util.*;
+import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 
 public class UDM {
 
@@ -85,6 +92,10 @@ public class UDM {
     // Setters
     public void setEntered_ue(ArrayList<UE> entered_ue) {
         this.entered_ue = entered_ue;
+    }
+
+    public void setRegistered_ue(JTable regUE) {
+        this.registered_ue = regUE;
     }
 
     public void setRegistered_UECellValue(Object value, int row, int column) {

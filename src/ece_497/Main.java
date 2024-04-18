@@ -23,13 +23,13 @@ public class Main {
             JTable input = CSVToJTable(filename);
             
             // Loop through input UE data
-            for (int i = 1; i < input.getRowCount(); i++) {
+            for (int j = 1; j < input.getRowCount(); j++) {
                 boolean result = false;
                 
                 // Create UE object with provided information from files
-                UE ue = new UE(Integer.parseInt(input.getValueAt(i, 0).toString()), Integer.parseInt(input.getValueAt(i, 1).toString()), 
-                                Integer.parseInt(input.getValueAt(i, 2).toString()), Boolean.parseBoolean(input.getValueAt(i, 3).toString()), 
-                                Boolean.parseBoolean(input.getValueAt(i, 4).toString()), input.getValueAt(i, 4).toString());
+                UE ue = new UE(Integer.parseInt(input.getValueAt(j, 0).toString()), Integer.parseInt(input.getValueAt(j, 1).toString()), 
+                                Integer.parseInt(input.getValueAt(j, 2).toString()), Boolean.parseBoolean(input.getValueAt(j, 3).toString()), 
+                                Boolean.parseBoolean(input.getValueAt(j, 4).toString()), input.getValueAt(j, 4).toString());
                 ueArray.add(ue);
                 
                 // Call admission and service functions

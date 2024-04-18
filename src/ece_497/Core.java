@@ -40,20 +40,22 @@ public class Core {
         boolean cb = false;
         int priority = 0;
         int ueId = ue.getId();
-        getEntered_ue.add(ue);
+        ArrayList<UE> temp = udm.getEntered_ue();
+        temp.add(ue);   
+        udm.setEntered_ue(temp);
 
         // Allocation and Retention Policy
-        HashMap<String, Object> ARP = new HashMap<String, Object>();
+        HashMap<String, Integer> ARP = new HashMap<String, Integer>();
         ARP = PCF(ue);
         int capacity = ARP.get("capacity");
         int threshold = ARP.get("threshold");
-        boolean premptCap = ARP.get("premptCap");
-        boolean premptVul = ARP.get("premptVul");
+        boolean premptCap = ue.isPremtCapable();
+        boolean premptVul = ue.isPremtVul();
 
-        int count = getCount();
+        int count = udm.getCount();
         
-        for (int i = 0; i < getKnown_ue().getRowCount(); i++) {
-            if (ueId == Integer.parseInt(getKnown_UECellValue(i,0).toString)){
+        for (int i = 0; i < udm.getKnown_ue().getRowCount(); i++) {
+            if (ueId == Integer.parseInt(udm.getKnown_UECellValue(i,0).toString())){
                 authResult = true;
                 ue.setKnown(true);
                 priority = ue.getPriority();
@@ -83,11 +85,11 @@ public class Core {
                     boolean flag = false;
                     for (int p = threshold; p < priority && flag == false; p++) {
                         // Look for a UE with a lower priority to kick
-                        for (int k=1; k <= getRegistered_ue().getRowCount(); k++) {
+                        for (int k=1; k <= udm.getRegistered_ue().getRowCount(); k++) {
                             // if a registered ue is prempt vul, get
-                            if(Boolean.parseBoolean(getRegistered_UECellValue(k,5).toString())){
+                            if(Boolean.parseBoolean(udm.getRegistered_UECellValue(k,5).toString())){
                                 // check if priority is less than threshold
-                                if (Integer.parseInt(getRegistered_UECellValue(k, 2).toString())<=p) {
+                                if (Integer.parseInt(udm.getRegistered_UECellValue(k, 2).toString())<=p) {
                                     // if so, store row index
                                     ueKickId = k;
                                     flag = true;
@@ -98,20 +100,22 @@ public class Core {
                     }
                 
                     // reflect through entered_ue (thru udm in future), no need for note?
-                    getEntered_ue().get(ueKickId).gotPremptUE();
+                    udm.getEntered_ue().get(ueKickId).gotPremptUE();
+                    // remove entered ue from DB? add check in UDM
                 }
             } else {
                 // Handle authentication for UE within capacity
                 // Update count, add UE to registered list
-                JTable newReg = JTableRegistered(ue);
-                JTable temp = getRegistered_ue();
-                temp.add(newReg);
-                setRegistered_UE(temp);
+                JTable newReg = udm.JTableRegistered(ue);
+                JTable tempReg = udm.getRegistered_ue();
+                tempReg.add(newReg);
+                udm.setRegistered_ue(tempReg);
                 count++;
+                udm.setCount(count);
             }
         }
         // update count in UDM
-        setCount(count);
+        udm.setCount(count);
         udm.updateDuration();
         return authResult;
     }
@@ -123,115 +127,138 @@ public class Core {
         String type = "N";
         boolean preCap = false;
         boolean preVul = false;
-        HashMap<String, Object> ARP = new HashMap<String, Object>();
+        HashMap<String, Integer> ARP = new HashMap<String, Integer>();
 
         // call pcf here
         ARP = PCF(ue);
         // return an hashmap of policy and allo?
         // set bandallo in pcf based on priority and app type
-        int BANDALLO = policy.get("band");
+        int BANDALLO = ARP.get("band");
         // System.out.println("the band allo is: "+Integer.toString(BANDALLO));
         
         // Retrieve UE properties
         int ue_id = ue.getId();
+
+        // retrieve temporary db variables from udm
+        JTable knownUE = udm.getKnown_ue();
+        ArrayList<UE> enteredUE = udm.getEntered_ue();
+        JTable generalBD = udm.getGeneral_bd();
+        int genWidth = udm.getGeneral_width();
+        JTable dataBD = udm.getData_bd();
+        int dataWidth = udm.getData_width();
+        JTable videoBD = udm.getVideo_bd();
+        int videoWidth = udm.getVideo_width();
+
         
         // Check UE properties based on known data
-        for (int n = 0; n < known_ue.getRowCount(); n++) {
-            if (ue_id == Integer.parseInt(known_ue.getValueAt(n,0).toString())) {
-                type = (String)known_ue.getValueAt(n,5);
+        for (int n = 0; n < knownUE.getRowCount(); n++) {
+            if (ue_id == Integer.parseInt(knownUE.getValueAt(n,0).toString())) {
+                type = (String)knownUE.getValueAt(n,5);
                 // System.out.println("type: "+type);
-                preCap = Boolean.parseBoolean(known_ue.getValueAt(n,3).toString());
-                preVul = Boolean.parseBoolean(known_ue.getValueAt(n,4).toString());
+                preCap = Boolean.parseBoolean(knownUE.getValueAt(n,3).toString());
+                preVul = Boolean.parseBoolean(knownUE.getValueAt(n,4).toString());
             }
         }
         
         // Data, d
         if (type.equals("D")) {
-            if (data_width >= BANDALLO) {
-                data_width -= BANDALLO;
+            if (dataWidth >= BANDALLO) {
+                dataWidth -= BANDALLO;
+                udm.setData_width(dataWidth);
                 ue.setBandAllo("D", BANDALLO);
-                JTable temp = UDM.JTableBandwidth("ue_id", ue);
-                
-                
-                getData_bd().add(temp);
+                JTable temp = udm.JTableBandwidth("ue_id", ue);
+                dataBD.add(temp);
+                udm.printDB(dataBD, "Data");
                 allocated_flag = true;
             } else {
                 if (preCap) {
-                    for (int p = 0; p < getData_bd().getRowCount(); p++) {
-                        if ((boolean)data_bd.getValueAt(p, 3) && !allocated_flag) {
-                            entered_ue.get(p).gotPremptUE();
-                            video_bd.setValueAt(ue_id, p,0);
-                            video_bd.setValueAt(preVul,p,2);
-                            video_bd.setValueAt(0, p, 5) ;
-                            video_bd.setValueAt(BANDALLO, p, 4);
+                    for (int p = 0; p < udm.getData_bd().getRowCount(); p++) {
+                        if ((boolean)udm.getData_bd().getValueAt(p, 3) && !allocated_flag) {
+                            enteredUE.get(p).gotPremptUE();
+                            videoBD.setValueAt(ue_id, p,0);
+                            videoBD.setValueAt(preVul,p,2);
+                            videoBD.setValueAt(0, p, 5) ;
+                            videoBD.setValueAt(BANDALLO, p, 4);
+                            udm.setVideo_bd(videoBD);
                             ue.setBandAllo("D", BANDALLO);
                             allocated_flag = true;
                         }
                     }
                 } else {
-                    if (general_width >= 120) {
+                    if (genWidth >= 120) {
                         ue.setBandAllo("G",BANDALLO);
-                        general_width -= BANDALLO;
-                        JTable temp = UDM.JTableBandwidth("ue_id", ue);
-                        data_bd.add(temp);
+                        genWidth -= BANDALLO;
+                        udm.setGeneral_width(genWidth);
+                        JTable temp = udm.JTableBandwidth("ue_id", ue);
+                        dataBD.add(temp);
+                        udm.setData_bd(dataBD);
                         allocated_flag = true;
                     }
                 }
             }
         } else if (type.equals("V")) {
             // Handle video type
-            if (video_width >= 10) {
+            if (videoWidth >= 10) {
                 ue.setBandAllo("V",BANDALLO);
-                video_width -= BANDALLO;
-                JTable temp = UDM.JTableBandwidth("ue_id", ue);
-                video_bd.add(temp);
+                videoWidth -= BANDALLO;
+                udm.setVideo_width(videoWidth);
+                JTable temp = udm.JTableBandwidth("ue_id", ue);
+                videoBD.add(temp);
+                udm.setVideo_bd(videoBD);
                 allocated_flag = true;
             } else {
                 if (preCap) {
-                    for (int p = 0; p < video_bd.getRowCount(); p++) {
-                        if ((boolean)video_bd.getValueAt(p,3) && !allocated_flag) {
-                            entered_ue.get(p).gotPremptUE();
+                    for (int p = 0; p < videoBD.getRowCount(); p++) {
+                        if ((boolean)videoBD.getValueAt(p,3) && !allocated_flag) {
+                            enteredUE.get(p).gotPremptUE();
                             // remove from video_bd
-                            video_bd.setValueAt(ue_id, p,0);
-                            video_bd.setValueAt(preVul,p,2);
-                            video_bd.setValueAt(0, p, 5) ;
-                            video_bd.setValueAt(BANDALLO, p, 4);
+                            videoBD.setValueAt(ue_id, p,0);
+                            videoBD.setValueAt(preVul,p,2);
+                            videoBD.setValueAt(0, p, 5) ;
+                            videoBD.setValueAt(BANDALLO, p, 4);
+                            udm.setVideo_bd(videoBD);
                             ue.setBandAllo("V",BANDALLO);
                             allocated_flag = true;
                         }
                     }
                 } else {
                     // Handle the case when video bandwidth is insufficient
-                    if (general_width >= 120) {
+                    if (genWidth >= 120) {
                         ue.setBandAllo("G",BANDALLO);
-                        general_width -= BANDALLO;
-                        JTable temp = UDM.JTableBandwidth("ue_id", ue);
-                        general_bd.add(temp);
+                        genWidth -= BANDALLO;
+                        udm.setGeneral_width(genWidth);
+                        JTable temp = udm.JTableBandwidth("ue_id", ue);
+                        generalBD.add(temp);
+                        udm.setGeneral_bd(generalBD);
                         allocated_flag = true;
                     }
                 }
             }
         } else if (type.equals("G")) {
             // Handle general type
-            if (general_width >= 10) {
+            if (genWidth >= 10) {
                 ue.setBandAllo("G",BANDALLO);
-                general_width -= BANDALLO;
-                JTable temp = UDM.JTableBandwidth("ue_id", ue);
-                general_bd.add(temp);
+                genWidth -= BANDALLO;
+                udm.setGeneral_width(genWidth);
+                JTable temp = udm.JTableBandwidth("ue_id", ue);
+                generalBD.add(temp);
+                udm.setGeneral_bd(generalBD);
                 allocated_flag = true;
             } else {
                 if (preCap) {
-                    for (int p = 0; p < general_bd.getRowCount(); p++) {
+                    for (int p = 0; p < generalBD.getRowCount(); p++) {
                         // if someone in general is prempt vulnerable and the current ue is not allocated
-                        if ((boolean)general_bd.getValueAt(p, 3) && !allocated_flag) {
-                            entered_ue.get(p).gotPremptUE();
+                        if ((boolean)generalBD.getValueAt(p, 3) && !allocated_flag) {
+                            enteredUE.get(p).gotPremptUE();
                             // remove from general
-                            general_bd.setValueAt(ue_id, p,1);
-                            general_bd.setValueAt(preVul,p,3);
-                            general_bd.setValueAt(0, p, 5) ;
-                            general_bd.setValueAt(BANDALLO, p, 4);
+                            generalBD.setValueAt(ue_id, p,1);
+                            generalBD.setValueAt(preVul,p,3);
+                            generalBD.setValueAt(0, p, 5) ;
+                            generalBD.setValueAt(BANDALLO, p, 4);
+                            udm.setGeneral_bd(generalBD);
                             ue.setBandAllo("G",BANDALLO);
                             allocated_flag = true;
+
                         }
                     }
                 }
@@ -241,22 +268,18 @@ public class Core {
             allocated_flag = false;
         }
         
-        updateDuration();
+        udm.updateDuration();
         return allocated_flag;
     }
 
     //  PCF \\
     //      \\
     // A-Type QoS profile, standard parameters for all UE's
-    public synchronized HashMap<String, Object> PCF(UE ue) {
+    public synchronized HashMap<String, Integer> PCF(UE ue) {
         HashMap<String, Integer> ret = new HashMap<String, Integer>();
         int MAX_CAP = 20;
         int P_THRESHOLD = 5;
         int B_ALLO_STANDARD = 10;
-        // add prempts 
-        boolean premptCap = ue.isPremtCapable();
-        boolean premptVul = ue.isPremtVul();
-
         // Determine the capacity of the network
         int capacity = MAX_CAP;
         ret.put("capacity", capacity);
@@ -266,10 +289,7 @@ public class Core {
         // Determine how many MBPS will be allocated to each UE
         // garanteed flow bit rate, just the standard
         int gfbr = B_ALLO_STANDARD;
-        // maximum flow bit rate, based on current bandwidth open and 
-        int mfbr = 
-        ret.put("gfbr", grbr);
-        ret.put("mfbr", mfbr);
+        ret.put("gfbr", gfbr);
                 
         return ret;
     }
