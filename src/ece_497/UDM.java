@@ -1,6 +1,5 @@
 package ece_497;
 import java.util.*;
-import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -15,7 +14,7 @@ import java.io.FileReader;
 public class UDM {
 
     // my metaphorical UDR
-    private static JTable known_ue;
+    private JTable known_ue;
     private ArrayList<UE> entered_ue;
     private JTable registered_ue;
     private int general_width;
@@ -120,17 +119,14 @@ public class UDM {
 
     public void setGeneral_bd(JTable general_bd) {
         this.general_bd = general_bd;
-        printDB(general_bd, "general");
     }
 
     public void setData_bd(JTable data_bd) {
         this.data_bd = data_bd;
-        printDB(data_bd, "data");
     }
 
     public void setVideo_bd(JTable video_bd) {
         this.video_bd = video_bd;
-        printDB(video_bd, "video");
     }
 
     public void setCount(int count) {
@@ -199,10 +195,10 @@ public class UDM {
 
     // helper function
     public synchronized JTable JTableBandwidth(String name, UE ue) {
-        JTable table = new JTable();
-        table.setName(name);
+        JTable table;
         DefaultTableModel model = new DefaultTableModel();
         table = new JTable(model);
+        table.setName(name);
         // Headers: UE,Prempt_Capable,Prempt_Vul,AppType, Bandwidth, Duration
         model.addColumn("UE");
         model.addColumn("Prempt_Capable");
@@ -222,13 +218,8 @@ public class UDM {
             row[5]=("0");
             model.addRow(row);
         }
-
-        // build the jtable
-        table = new JTable(model);
         JFrame frame = new JFrame();
         frame.add(new JScrollPane(table));
-
-
         return table;
     }
 
@@ -268,18 +259,19 @@ public class UDM {
         // get the table model
         TableModel model = table.getModel();
 
+        System.out.println();
         // print column headers
         for (int i = 0; i < model.getColumnCount(); i++) {
             System.out.print(model.getColumnName(i) + "\t");
         }
-        // blank new line
-        System.out.println();
 
         // print table data
         for (int row = 0; row < model.getRowCount(); row++) {
+            System.out.print("| ");
             for (int col = 0; col < model.getColumnCount(); col++) {
-                System.out.print(model.getValueAt(row, col) + "\t");
+                System.out.print(String.valueOf(table.getValueAt(row, col)) + "\t");
             }
+            System.out.print("| ");
             // blank new line
             System.out.println();
         }

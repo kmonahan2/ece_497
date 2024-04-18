@@ -6,15 +6,19 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class Main {
-    static Core Core = new Core();
-    public static void main(String[] args) throws Exception {
+        public static void main(String[] args) throws Exception {
         
         System.out.println("Welcome to the 5G Network");
         
         for(int i=0; i<=4; i++) {
+            Core core = new Core();
+
             ArrayList<UE> ueArray = new ArrayList<>();
             String filename = "TestCase0"+(Integer.toString(i))+".csv";
 
+
+            System.out.println();
+            System.out.println("*********************");
             System.out.println("*** "+filename+" ***");
     
                     //   1     2        3        4            5          6
@@ -32,23 +36,24 @@ public class Main {
                 ueArray.add(ue);
                 
                 // Call admission and service functions
-                result = AN(ue);
+                result = AN(ue, core);
 
+                System.out.println();
                 // Print statement
                 if (result) {
                     System.out.println("** UE "+ue.getId()+" has been admitted **");
-                    System.out.println("  Bandwidth Allocated: "+ue.getBandInt()+" Mbps.");
+                    System.out.println("** Bandwidth Allocated: "+ue.getBandInt()+" Mbps.");
                 }
                 else {
                     System.out.println("** UE "+ue.getId()+" has not been admitted **");
-                    System.out.println(" Due to: "+ue.getReason()+".");
+                    System.out.println("** Due to: "+ue.getReason()+".");
                 }
             }
         }
     }
 
-    public static boolean AN(UE ue) {
-        return Core.AMF(ue);
+    public static boolean AN(UE ue, Core core) {
+        return core.AMF(ue);
     }
 
     // helper function

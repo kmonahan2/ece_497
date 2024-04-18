@@ -133,6 +133,7 @@ public class UE {
         this.admitted = false;
         this.reason = "UE was prempted due to capacity";
         // print statement to user
+        System.out.println("Premption Note:");
         System.out.println("** UE "+this.id+" has been prempted due to capacity. **");
     }
 

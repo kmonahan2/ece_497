@@ -1,15 +1,13 @@
 package ece_497;
 import java.util.*;
-
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
 
 public class Core {
 
     // at the control plane, each function can call udm.
-    private final UDM udm = new UDM();
+    private UDM udm = new UDM();
 
     // Constructor \\
     public Core() {
@@ -49,7 +47,6 @@ public class Core {
         int capacity = ARP.get("capacity");
         int threshold = ARP.get("threshold");
         boolean premptCap = ue.isPremtCapable();
-        boolean premptVul = ue.isPremtVul();
 
         int count = udm.getCount();
         
@@ -166,29 +163,43 @@ public class Core {
         
         // Data, d
         if (type.equals("D")) {
+            // If there is enough data bandwidth to allocate
             if (dataWidth >= BANDALLO) {
+                // update the available data bandwidth available
                 dataWidth -= BANDALLO;
+                // update to UDM
                 udm.setData_width(dataWidth);
+                // give the bandwidth to the UE
                 ue.setBandAllo("D", BANDALLO);
-                JTable temp = udm.JTableBandwidth("ue_id", ue);
-                dataBD.add(temp);
-                udm.printDB(dataBD, "Data");
+                // add entry in udm
+                JTable tempDBD = makeRow(dataBD, ue);
+                udm.setData_bd(tempDBD);
+                // print the updated pipe
+                udm.printDB(tempDBD, "Data");
+                // mark ue as allocated
                 allocated_flag = true;
-            } else {
+            } 
+            // If there is not sufficient bandwidth free 
+            else {
+                // If the UE is prempt capable
                 if (preCap) {
+                    // check through the current data pipe
                     for (int p = 0; p < udm.getData_bd().getRowCount(); p++) {
-                        if ((boolean)udm.getData_bd().getValueAt(p, 3) && !allocated_flag) {
+                        // if an existing entry is prempt vulnerable
+                        if ((boolean)udm.getData_bd().getValueAt(p, 3)) {
                             enteredUE.get(p).gotPremptUE();
-                            videoBD.setValueAt(ue_id, p,0);
-                            videoBD.setValueAt(preVul,p,2);
-                            videoBD.setValueAt(0, p, 5) ;
-                            videoBD.setValueAt(BANDALLO, p, 4);
+                            dataBD.setValueAt(ue_id, p,0);
+                            dataBD.setValueAt(preVul,p,2);
+                            dataBD.setValueAt(0, p, 5) ;
+                            dataBD.setValueAt(BANDALLO, p, 4);
                             udm.setVideo_bd(videoBD);
                             ue.setBandAllo("D", BANDALLO);
                             allocated_flag = true;
                         }
                     }
-                } else {
+                }
+                // If the UE is not prempt capable 
+                else {
                     if (genWidth >= 120) {
                         ue.setBandAllo("G",BANDALLO);
                         genWidth -= BANDALLO;
@@ -206,9 +217,8 @@ public class Core {
                 ue.setBandAllo("V",BANDALLO);
                 videoWidth -= BANDALLO;
                 udm.setVideo_width(videoWidth);
-                JTable temp = udm.JTableBandwidth("ue_id", ue);
-                videoBD.add(temp);
-                udm.setVideo_bd(videoBD);
+                JTable tempVBD = makeRow(videoBD, ue);
+                udm.setVideo_bd(tempVBD);
                 allocated_flag = true;
             } else {
                 if (preCap) {
@@ -231,9 +241,8 @@ public class Core {
                         ue.setBandAllo("G",BANDALLO);
                         genWidth -= BANDALLO;
                         udm.setGeneral_width(genWidth);
-                        JTable temp = udm.JTableBandwidth("ue_id", ue);
-                        generalBD.add(temp);
-                        udm.setGeneral_bd(generalBD);
+                        JTable tempGBD = makeRow(generalBD, ue);
+                        udm.setGeneral_bd(tempGBD);
                         allocated_flag = true;
                     }
                 }
@@ -244,9 +253,9 @@ public class Core {
                 ue.setBandAllo("G",BANDALLO);
                 genWidth -= BANDALLO;
                 udm.setGeneral_width(genWidth);
-                JTable temp = udm.JTableBandwidth("ue_id", ue);
-                generalBD.add(temp);
-                udm.setGeneral_bd(generalBD);
+                // add new entry to bandwidth 
+                JTable tempGBD = makeRow(generalBD, ue);
+                udm.setGeneral_bd(tempGBD);
                 allocated_flag = true;
             } else {
                 if (preCap) {
@@ -296,5 +305,19 @@ public class Core {
         ret.put("gfbr", gfbr);
                 
         return ret;
+    }
+
+    public JTable makeRow(JTable table, UE ue) {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        String[] row = new String[6];
+        row[0]=(Integer.toString(ue.getId()));
+        row[1]=(Boolean.toString(ue.isPremtCapable()));
+        row[2]=(Boolean.toString(ue.isPremtVul()));
+        row[3]=(ue.getAppType());
+        row[4]=(Integer.toString(ue.getBandInt()));
+        row[5]=("0");
+        model.addRow(row);
+        table = new JTable(model);
+        return table;
     }
 }
