@@ -6,6 +6,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+
 public class UDM {
 
     // my metaphorical UDR
@@ -22,7 +23,7 @@ public class UDM {
 
     public UDM() {
         // starting variables
-        this.known_ue = Main.CSVToJTable("known_ue.csv");
+        this.known_ue = CSVToJTable("KnownUE.csv");
         this.entered_ue = new ArrayList<UE>();
         this.registered_ue = new JTable();
         this.general_width = 500;
@@ -120,7 +121,7 @@ public class UDM {
 
     public void setVideo_bd(JTable video_bd) {
         this.video_bd = video_bd;
-        printDB(videp_bd, "video");
+        printDB(video_bd, "video");
     }
 
     public void setCount(int count) {
@@ -148,6 +149,43 @@ public class UDM {
             data_bd.setValueAt(temp, i, 5);
         }
 
+    }
+
+    // helper function
+    public JTable CSVToJTable(String filename) {
+        JTable table = new JTable();
+        table.setName(filename);
+        
+        // Create a table model
+        DefaultTableModel model = new DefaultTableModel();
+        // Headers: UE,Priority,Callbar,Prempt_Capable,Prempt_Vul,AppType
+        model.addColumn("UE");
+        model.addColumn("Priority");
+        model.addColumn("Callbar");
+        model.addColumn("Prempt_Capable");
+        model.addColumn("Prempt_Vul");
+        model.addColumn("AppType");
+        
+
+        // Read CSV file and add rows to the table
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(filename));
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(","); // Assuming CSV uses comma as delimiter, change accordingly
+                model.addRow(data);
+            }
+            br.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // build the jtable
+        table = new JTable(model);
+        JFrame frame = new JFrame();
+        frame.add(new JScrollPane(table));
+
+        return table;
     }
 
     // helper function

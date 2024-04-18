@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 public class Core {
 
     // at the control plane, each function can call udm.
-    private final UserDataManagement udm;
+    private final UDM udm;
 
     // Constructor \\
     public Core() {
@@ -150,7 +150,7 @@ public class Core {
             if (data_width >= BANDALLO) {
                 data_width -= BANDALLO;
                 ue.setBandAllo("D", BANDALLO);
-                JTable temp = JTableBandwidth("ue_id", ue);
+                JTable temp = UDM.JTableBandwidth("ue_id", ue);
                 
                 
                 getData_bd().add(temp);
@@ -172,7 +172,7 @@ public class Core {
                     if (general_width >= 120) {
                         ue.setBandAllo("G",BANDALLO);
                         general_width -= BANDALLO;
-                        JTable temp = JTableBandwidth("ue_id", ue);
+                        JTable temp = UDM.JTableBandwidth("ue_id", ue);
                         data_bd.add(temp);
                         allocated_flag = true;
                     }
@@ -183,7 +183,7 @@ public class Core {
             if (video_width >= 10) {
                 ue.setBandAllo("V",BANDALLO);
                 video_width -= BANDALLO;
-                JTable temp = JTableBandwidth("ue_id", ue);
+                JTable temp = UDM.JTableBandwidth("ue_id", ue);
                 video_bd.add(temp);
                 allocated_flag = true;
             } else {
@@ -205,7 +205,7 @@ public class Core {
                     if (general_width >= 120) {
                         ue.setBandAllo("G",BANDALLO);
                         general_width -= BANDALLO;
-                        JTable temp = JTableBandwidth("ue_id", ue);
+                        JTable temp = UDM.JTableBandwidth("ue_id", ue);
                         general_bd.add(temp);
                         allocated_flag = true;
                     }
@@ -216,7 +216,7 @@ public class Core {
             if (general_width >= 10) {
                 ue.setBandAllo("G",BANDALLO);
                 general_width -= BANDALLO;
-                JTable temp = JTableBandwidth("ue_id", ue);
+                JTable temp = UDM.JTableBandwidth("ue_id", ue);
                 general_bd.add(temp);
                 allocated_flag = true;
             } else {

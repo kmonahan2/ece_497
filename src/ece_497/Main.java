@@ -1,5 +1,4 @@
 package ece_497;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.*;
@@ -8,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class Main {
     static Core Core = new Core();
+
     public static void main(String[] args) throws Exception {
         
         System.out.println("Welcome to the 5G Network");
@@ -20,16 +20,16 @@ public class Main {
     
                     //   1     2        3        4            5          6
             // Headers: UE,Priority,Callbar,Prempt_Capable,Prempt_Vul,AppType
-            JTable input1 = CSVToJTable(filename);
+            JTable input = CSVToJTable(filename);
             
             // Loop through input UE data
-            for (int i = 1; i < input1.getRowCount(); i++) {
+            for (int i = 1; i < input.getRowCount(); i++) {
                 boolean result = false;
                 
                 // Create UE object with provided information from files
-                UE ue = new UE(Integer.parseInt(input1.getValueAt(i, 0).toString()), Integer.parseInt(input1.getValueAt(i, 1).toString()), 
-                                Integer.parseInt(input1.getValueAt(i, 2).toString()), Boolean.parseBoolean(input1.getValueAt(i, 3).toString()), 
-                                Boolean.parseBoolean(input1.getValueAt(i, 4).toString()), input1.getValueAt(i, 4).toString());
+                UE ue = new UE(Integer.parseInt(input.getValueAt(i, 0).toString()), Integer.parseInt(input.getValueAt(i, 1).toString()), 
+                                Integer.parseInt(input.getValueAt(i, 2).toString()), Boolean.parseBoolean(input.getValueAt(i, 3).toString()), 
+                                Boolean.parseBoolean(input.getValueAt(i, 4).toString()), input.getValueAt(i, 4).toString());
                 ueArray.add(ue);
                 
                 // Call admission and service functions
@@ -52,6 +52,7 @@ public class Main {
         return Core.AMF(ue);
     }
 
+    // helper function
     public static JTable CSVToJTable(String filename) {
         JTable table = new JTable();
         table.setName(filename);
