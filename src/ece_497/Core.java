@@ -83,9 +83,9 @@ public class Core {
                         // Look for a UE with a lower priority to kick
                         for (int k=1; k <= udm.getRegistered_ue().getRowCount(); k++) {
                             // if a registered ue is prempt vul, get
-                            if(Boolean.parseBoolean(udm.getRegistered_UECellValue(k,5).toString())){
+                            if(Boolean.parseBoolean(udm.getRegistered_UECellValue(k,4).toString())){
                                 // check if priority is less than threshold
-                                if (Integer.parseInt(udm.getRegistered_UECellValue(k, 2).toString())<=p) {
+                                if (Integer.parseInt(udm.getRegistered_UECellValue(k, 1).toString())<=p) {
                                     // if so, store row index
                                     ueKickId = k;
                                     flag = true;
@@ -95,7 +95,7 @@ public class Core {
                         }
                     }
                 
-                    // reflect through entered_ue (thru udm in future), no need for note?
+                    // notify prempted UE of kicking
                     udm.getEntered_ue().get(ueKickId).gotPremptUE();
                     // remove entered ue from DB? add check in UDM
                 }
@@ -130,8 +130,12 @@ public class Core {
         // return an hashmap of policy and allo?
         // set bandallo in pcf based on priority and app type
         int BANDALLO = 0;
+        int GEN_ALLO = 0;
+        int DUR_MAX = 99;
         try {
             BANDALLO = ARP.get("gfbr");
+            GEN_ALLO = ARP.get("gen_allo");
+            DUR_MAX = ARP.get("dur_max");
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -185,10 +189,12 @@ public class Core {
                 if (preCap) {
                     // check through the current data pipe
                     for (int p = 0; p < udm.getData_bd().getRowCount(); p++) {
-                        // if an existing entry is prempt vulnerable
-                        if ((boolean)udm.getData_bd().getValueAt(p, 2)) {
+                        // if an existing entry is prempt vulnerable and has a long enough duration
+                        if ((boolean)udm.getData_bd().getValueAt(p, 2) && (Integer)dataBD.getValueAt(p,5) > DUR_MAX) {
                             // notify prempted UE, reset UE Object's values
-                            enteredUE.get(p).gotPremptUE();
+                            int kickId =(int)dataBD.getValueAt(p,0);
+                            // notify prempted UE of kicking
+                            udm.getEnteredUEInst(kickId).gotPremptUE();
                             // replace the values in the bandwidth pipe 
                             dataBD.setValueAt(ue_id, p,0);
                             dataBD.setValueAt(preVul,p,1);
@@ -207,7 +213,7 @@ public class Core {
                 // If the UE is not prempt capable 
                 else {
                     // check if general data pipe has enough to spare
-                    if (genWidth >= 60) {
+                    if (genWidth >= GEN_ALLO) {
                         // give UE the bandwidth
                         ue.setBandAllo("G",BANDALLO);
                         // update the general bandwidth
@@ -245,10 +251,12 @@ public class Core {
                 if (preCap) {
                     // check through the current video pipe
                     for (int p = 0; p < udm.getVideo_bd().getRowCount(); p++) {
-                        // if an existing entry is prempt vulnerable
-                        if ((boolean)udm.getVideo_bd().getValueAt(p, 2)) {
+                        // if an existing entry is prempt vulnerable and the duration is long enough
+                        if ((boolean)udm.getVideo_bd().getValueAt(p, 2) && (Integer)videoBD.getValueAt(p,5) > DUR_MAX) {
                             // notify prempted UE, reset UE Object's values
-                            enteredUE.get(p).gotPremptUE();
+                            int kickId =(int)dataBD.getValueAt(p,0);
+                            // notify prempted UE of kicking
+                            udm.getEnteredUEInst(kickId).gotPremptUE();
                             // replace the values in the bandwidth pipe 
                             videoBD.setValueAt(ue_id, p,0);
                             videoBD.setValueAt(preVul,p,1);
@@ -266,7 +274,7 @@ public class Core {
                 // If the UE is not Prempt Capable
                 } else {
                     // check if general data pipe has enough to spare
-                    if (genWidth >= 60) {
+                    if (genWidth >= GEN_ALLO) {
                         // give UE the bandwidth
                         ue.setBandAllo("G",BANDALLO);
                         // update the general bandwidth
@@ -338,8 +346,10 @@ public class Core {
     public synchronized HashMap<String, Integer> PCF(UE ue) {
         HashMap<String, Integer> ret = new HashMap<String, Integer>();
         int MAX_CAP = 20;
-        int P_THRESHOLD = 5;
-        int B_ALLO_STANDARD = 10;
+        int P_THRESHOLD = 3;
+        int B_ALLO_STANDARD = 15;
+        int GEN_B_ALLO = 10;
+        int DUR_MAX = 20;
         // Determine the capacity of the network
         int capacity = MAX_CAP;
         ret.put("capacity", capacity);
@@ -350,7 +360,15 @@ public class Core {
         // garanteed flow bit rate, just the standard
         int gfbr = B_ALLO_STANDARD;
         ret.put("gfbr", gfbr);
+        int gen_allo = 0;
+        // if high enough priority and not callbared, allow general bandwidth allocation
+        if (ue.getPriority() > P_THRESHOLD && !ue.isCallbar()) {
+            gen_allo = GEN_B_ALLO;
+        }
+        ret.put("gen_allo", gen_allo);
                 
+        ret.put("dur_max", DUR_MAX);
+
         return ret;
     }
 

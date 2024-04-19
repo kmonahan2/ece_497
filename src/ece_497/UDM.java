@@ -30,9 +30,9 @@ public class UDM {
         this.known_ue = CSVToJTable("KnownUE.csv");
         this.entered_ue = new ArrayList<UE>();
         this.registered_ue = new JTable();
-        this.general_width = 500;
+        this.general_width = 300;
         this.data_width = 500;
-        this.video_width = 500;
+        this.video_width = 250;
         this.general_bd = JTableBandwidth("general_bd", null);
         this.data_bd = JTableBandwidth("data_bd", null);
         this.video_bd = JTableBandwidth("video_bd", null);
@@ -42,6 +42,18 @@ public class UDM {
     // Getters
     public ArrayList<UE> getEntered_ue() {
         return this.entered_ue;
+    }
+
+    public UE getEnteredUEInst(int ue_id) {
+        UE ret = null;
+
+        for (int i=0; i<this.entered_ue.size(); i++) {
+            if (this.entered_ue.get(i).getId() == ue_id){
+                ret = this.entered_ue.get(i);
+            }
+        }
+
+        return ret; 
     }
 
     public JTable getRegistered_ue() {
@@ -270,10 +282,13 @@ public class UDM {
         // print table data
         for (int row = 0; row < model.getRowCount(); row++) {
             System.out.print("| ");
+            String temp = "\t\t";
             for (int col = 0; col < model.getColumnCount(); col++) {
-                System.out.print(String.valueOf(table.getValueAt(row, col)) + "\t\t");
+                if (col == (model.getColumnCount()-1)) { temp = " "; }
+                System.out.print(String.valueOf(table.getValueAt(row, col))+ temp);
+                temp = temp + "\t";
             }
-            System.out.print("| ");
+            System.out.print("|");
             // blank new line
             System.out.println();
         }
