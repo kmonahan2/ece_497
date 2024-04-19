@@ -30,12 +30,12 @@ public class UDM {
         this.known_ue = CSVToJTable("KnownUE.csv");
         this.entered_ue = new ArrayList<UE>();
         this.registered_ue = new JTable();
-        this.general_width = 300;
-        this.data_width = 500;
-        this.video_width = 250;
-        this.general_bd = JTableBandwidth("general_bd", null);
-        this.data_bd = JTableBandwidth("data_bd", null);
-        this.video_bd = JTableBandwidth("video_bd", null);
+        this.general_width = 150;
+        this.data_width = 300;
+        this.video_width = 150;
+        this.general_bd = JTableBandwidth("general_bd");
+        this.data_bd = JTableBandwidth("data_bd");
+        this.video_bd = JTableBandwidth("video_bd");
         this.count = 0;
     }
 
@@ -48,7 +48,7 @@ public class UDM {
         UE ret = null;
 
         for (int i=0; i<this.entered_ue.size(); i++) {
-            if (this.entered_ue.get(i).getId() == ue_id){
+            if (this.entered_ue.get(i).getIdInt() == ue_id){
                 ret = this.entered_ue.get(i);
             }
         }
@@ -206,7 +206,7 @@ public class UDM {
     }
 
     // helper function
-    public synchronized JTable JTableBandwidth(String name, UE ue) {
+    public synchronized JTable JTableBandwidth(String name) {
         JTable table;
         DefaultTableModel model = new DefaultTableModel();
         table = new JTable(model);
@@ -219,17 +219,6 @@ public class UDM {
         model.addColumn("Bandwidth");
         model.addColumn("Duration");
 
-        // SET THE VALUE IN THE TABLE
-        if(ue != null){
-            String[] row = new String[6];
-            row[0]=(Integer.toString(ue.getId()));
-            row[1]=(Boolean.toString(ue.isPremtCapable()));
-            row[2]=(Boolean.toString(ue.isPremtVul()));
-            row[3]=(ue.getAppType());
-            row[4]=(Integer.toString(ue.getBandInt()));
-            row[5]=("0");
-            model.addRow(row);
-        }
         JFrame frame = new JFrame();
         frame.add(new JScrollPane(table));
         return table;
@@ -250,7 +239,7 @@ public class UDM {
 
         if(ue != null){
             String[] row = new String[6];
-            row[0]=(Integer.toString(ue.getId()));
+            row[0]=(ue.getIdS());
             row[1]=(Integer.toString(ue.getPriority()));
             row[2]=(Boolean.toString(ue.isCallbar()));
             row[3]=(Boolean.toString(ue.isPremtCapable()));
@@ -273,9 +262,13 @@ public class UDM {
 
         System.out.println();
         System.out.println("\t* "+db+" Pipe *");
+        System.out.print("\t");
         // print column headers
         for (int i = 0; i < model.getColumnCount(); i++) {
-            System.out.print(model.getColumnName(i) + "\t");
+            if (i == 3) {}
+                else {
+                    System.out.print(model.getColumnName(i) + "\t\t");
+                }
         }
         System.out.println();
 
@@ -284,9 +277,12 @@ public class UDM {
             System.out.print("| ");
             String temp = "\t\t";
             for (int col = 0; col < model.getColumnCount(); col++) {
-                if (col == (model.getColumnCount()-1)) { temp = " "; }
-                System.out.print(String.valueOf(table.getValueAt(row, col))+ temp);
-                temp = temp + "\t";
+                if (col >= (model.getColumnCount()-1)) { temp = ""; }
+                if (col == 3) {} // skip printing apptype
+                else {
+                    System.out.print(String.valueOf(table.getValueAt(row, col))+ temp);
+                }
+               temp = temp + "\t";
             }
             System.out.print("|");
             // blank new line

@@ -28,11 +28,23 @@ public class Main {
             // Loop through input UE data
             for (int j = 1; j < input.getRowCount(); j++) {
                 boolean result = false;
-                
+
+                boolean tempCap;
+                boolean tempVul;
+                if (Integer.parseInt(input.getValueAt(j,3).toString()) == 1) {
+                    tempCap = true;
+                } else {
+                    tempCap = false;
+                }
+                if (Integer.parseInt(input.getValueAt(j,4).toString()) == 1) {
+                    tempVul = true;
+                } else {
+                    tempVul = false;
+                }
+
                 // Create UE object with provided information from files
-                UE ue = new UE(Integer.parseInt(input.getValueAt(j, 0).toString()), Integer.parseInt(input.getValueAt(j, 1).toString()), 
-                                Integer.parseInt(input.getValueAt(j, 2).toString()), Boolean.parseBoolean(input.getValueAt(j, 3).toString()), 
-                                Boolean.parseBoolean(input.getValueAt(j, 4).toString()), input.getValueAt(j, 4).toString());
+                UE ue = new UE(input.getValueAt(j, 0).toString(), Integer.parseInt(input.getValueAt(j, 1).toString()), 
+                                Integer.parseInt(input.getValueAt(j, 2).toString()), tempCap, tempVul, input.getValueAt(j, 5).toString());
                 ueArray.add(ue);
                 
                 // Call admission and service functions
@@ -41,11 +53,11 @@ public class Main {
                 System.out.println();
                 // Print statement
                 if (result) {
-                    System.out.println("** UE "+ue.getId()+" has been admitted **");
+                    System.out.println("** UE "+ue.getIdS()+" has been admitted **");
                     System.out.println("** Bandwidth Allocated: "+ue.getBandInt()+" Mbps.");
                 }
                 else {
-                    System.out.println("** UE "+ue.getId()+" has not been admitted **");
+                    System.out.println("** UE "+ue.getIdS()+" has not been admitted **");
                     System.out.println("** Due to: "+ue.getReason()+".");
                 }
             }
@@ -64,12 +76,12 @@ public class Main {
         // Create a table model
         DefaultTableModel model = new DefaultTableModel();
         // Headers: UE,Priority,Callbar,Prempt_Capable,Prempt_Vul,AppType
-        model.addColumn("UE");
-        model.addColumn("Priority");
-        model.addColumn("Callbar");
-        model.addColumn("Prempt_Capable");
-        model.addColumn("Prempt_Vul");
-        model.addColumn("AppType");
+        model.addColumn("UE"); // 0
+        model.addColumn("Priority"); // 1
+        model.addColumn("Callbar"); // 2
+        model.addColumn("Prempt_Capable"); // 3
+        model.addColumn("Prempt_Vul"); // 4
+        model.addColumn("AppType"); // 5
         
 
         // Read CSV file and add rows to the table
@@ -78,7 +90,7 @@ public class Main {
             String line;
             try {
                 while ((line = br.readLine()) != null) {
-                    String[] data = line.split(","); // Assuming CSV uses comma as delimiter, change accordingly
+                    String[] data = line.split(","); 
                     model.addRow(data);
                 } 
             } catch(Exception e) {

@@ -4,7 +4,8 @@ import java.util.*;
 
 public class UE {
     // VARIABLES
-    private int id;
+    private String idS;
+    private int idInt;
     private int priority;
     private boolean callbar;
     private boolean premtCapable;
@@ -17,8 +18,9 @@ public class UE {
     private String reason;
     
     // CONSTRUCTOR
-    public UE(int id, int priority, int callbar, boolean premtCapable, boolean premtVul, String appType) {
-        this.id = id;
+    public UE(String id, int priority, int callbar, boolean premtCapable, boolean premtVul, String appType) {
+        this.idS = id;
+        this.idInt = Integer.parseInt(id);
         this.priority = priority;
         if (callbar > 0) { this.callbar = true; }
         else { this.callbar = false; }
@@ -35,12 +37,12 @@ public class UE {
     }
 
     // GETTERS/SETTERS
-    public int getId() {
-        return id;
+    public String getIdS() {
+        return this.idS;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIdInt() {
+        return this.idInt;
     }
 
     public int getPriority() {
@@ -132,9 +134,10 @@ public class UE {
     public void gotPremptUE(){
         this.admitted = false;
         this.reason = "UE was prempted due to capacity";
+        System.out.println();
         // print statement to user
         System.out.println("Premption Note:");
-        System.out.println("** UE "+this.id+" has been prempted due to capacity. **");
+        System.out.println("** UE "+this.idS+" has been prempted due to capacity. **");
     }
 
     public String getNotes() {
@@ -144,9 +147,4 @@ public class UE {
     public void addNotes(String notes) {
         this.notes = this.notes+notes;
     }
-
-    public void printNote(String updateUser) {
-
-    }
-    
 }

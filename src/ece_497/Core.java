@@ -36,7 +36,7 @@ public class Core {
         boolean authResult = false;
         boolean cb = false;
         int priority = 0;
-        int ueId = ue.getId();
+        int ueId = ue.getIdInt();
         ArrayList<UE> temp = udm.getEntered_ue();
         temp.add(ue);   
         udm.setEntered_ue(temp);
@@ -73,19 +73,20 @@ public class Core {
                 if (priority <= threshold) {
                     // Handle priority not meeting threshold at capacity
                     // Set notes accordingly
-                    ue.setReason("priority did not meet threshold");
+                    ue.setReason("priority did not meet threshold at capacity");
                     authResult = false;
+                }
                 // if the UE is capable of premption,
-                } else if (premptCap) {
+                if (premptCap) {
                     int ueKickId = 0;
                     boolean flag = false;
                     for (int p = threshold; p < priority && flag == false; p++) {
                         // Look for a UE with a lower priority to kick
                         for (int k=1; k <= udm.getRegistered_ue().getRowCount(); k++) {
-                            // if a registered ue is prempt vul, get
-                            if(Boolean.parseBoolean(udm.getRegistered_UECellValue(k,4).toString())){
+                            // if an entry is prempt vulnerbale,
+                            if(Integer.parseInt(udm.getRegistered_UECellValue(k,4).toString()) == 1){
                                 // check if priority is less than threshold
-                                if (Integer.parseInt(udm.getRegistered_UECellValue(k, 1).toString())<=p) {
+                                if (Integer.parseInt(udm.getRegistered_UECellValue(k, 1).toString())<=threshold) {
                                     // if so, store row index
                                     ueKickId = k;
                                     flag = true;
@@ -94,21 +95,23 @@ public class Core {
                             }
                         }
                     }
-                
+
+                    if (flag == true){
                     // notify prempted UE of kicking
-                    udm.getEntered_ue().get(ueKickId).gotPremptUE();
+                        udm.getEntered_ue().get(ueKickId).gotPremptUE();
+                    }
                     // remove entered ue from DB? add check in UDM
                 }
-            } else {
-                // Handle authentication for UE within capacity
-                // Update count, add UE to registered list
-                JTable newReg = udm.JTableRegistered(ue);
-                JTable tempReg = udm.getRegistered_ue();
-                tempReg.add(newReg);
-                udm.setRegistered_ue(tempReg);
-                count++;
-                udm.setCount(count);
-            }
+                } else {
+                    // Handle authentication for UE within capacity
+                    // Update count, add UE to registered list
+                    JTable newReg = udm.JTableRegistered(ue);
+                    JTable tempReg = udm.getRegistered_ue();
+                    tempReg.add(newReg);
+                    udm.setRegistered_ue(tempReg);
+                    count++;
+                    udm.setCount(count);
+                }
         }
         // update count in UDM
         udm.setCount(count);
@@ -142,7 +145,7 @@ public class Core {
         // System.out.println("the band allo is: "+Integer.toString(BANDALLO));
         
         // Retrieve UE properties
-        int ue_id = ue.getId();
+        int ue_id = ue.getIdInt();
 
         // retrieve temporary db variables from udm
         JTable knownUE = udm.getKnown_ue();
@@ -159,9 +162,16 @@ public class Core {
         for (int n = 0; n < knownUE.getRowCount(); n++) {
             if (ue_id == Integer.parseInt(knownUE.getValueAt(n,0).toString())) {
                 type = (String)knownUE.getValueAt(n,5);
-                // System.out.println("type: "+type);
-                preCap = Boolean.parseBoolean(knownUE.getValueAt(n,3).toString());
-                preVul = Boolean.parseBoolean(knownUE.getValueAt(n,4).toString());
+                if (Integer.parseInt(knownUE.getValueAt(n,3).toString()) == 1) {
+                    preCap = true;
+                } else {
+                    preCap = false;
+                }
+                if (Integer.parseInt(knownUE.getValueAt(n,4).toString()) == 1) {
+                    preVul = true;
+                } else {
+                    preVul = false;
+                }
             }
         }
         
@@ -190,9 +200,9 @@ public class Core {
                     // check through the current data pipe
                     for (int p = 0; p < udm.getData_bd().getRowCount(); p++) {
                         // if an existing entry is prempt vulnerable and has a long enough duration
-                        if ((boolean)udm.getData_bd().getValueAt(p, 2) && (Integer)dataBD.getValueAt(p,5) > DUR_MAX) {
+                        if ((udm.getData_bd().getValueAt(p, 2).toString() == "true") && ((Integer)dataBD.getValueAt(p,5) >= DUR_MAX)) {
                             // notify prempted UE, reset UE Object's values
-                            int kickId =(int)dataBD.getValueAt(p,0);
+                            int kickId = Integer.parseInt(dataBD.getValueAt(p,0).toString());
                             // notify prempted UE of kicking
                             udm.getEnteredUEInst(kickId).gotPremptUE();
                             // replace the values in the bandwidth pipe 
@@ -252,7 +262,7 @@ public class Core {
                     // check through the current video pipe
                     for (int p = 0; p < udm.getVideo_bd().getRowCount(); p++) {
                         // if an existing entry is prempt vulnerable and the duration is long enough
-                        if ((boolean)udm.getVideo_bd().getValueAt(p, 2) && (Integer)videoBD.getValueAt(p,5) > DUR_MAX) {
+                        if (udm.getVideo_bd().getValueAt(p, 2) == "true" && (Integer)videoBD.getValueAt(p,5) > DUR_MAX) {
                             // notify prempted UE, reset UE Object's values
                             int kickId =(int)dataBD.getValueAt(p,0);
                             // notify prempted UE of kicking
@@ -311,9 +321,9 @@ public class Core {
                     // check through the current video pipe
                     for (int p = 0; p < udm.getGeneral_bd().getRowCount(); p++) {
                         // if an existing entry is prempt vulnerable
-                        if ((boolean)udm.getGeneral_bd().getValueAt(p, 2)) {
+                        if (udm.getGeneral_bd().getValueAt(p, 2) == "true") {
                             // notify prempted UE, reset UE Object's values
-                            enteredUE.get(p).gotPremptUE();
+                            udm.getEntered_ue().get(p).gotPremptUE();
                             // replace the values in the bandwidth pipe 
                             generalBD.setValueAt(ue_id, p,0);
                             generalBD.setValueAt(preVul,p,1);
@@ -345,11 +355,12 @@ public class Core {
     // A-Type QoS profile, standard parameters for all UE's
     public synchronized HashMap<String, Integer> PCF(UE ue) {
         HashMap<String, Integer> ret = new HashMap<String, Integer>();
+        // SET BY NETWORK OWNERS..
         int MAX_CAP = 20;
         int P_THRESHOLD = 3;
         int B_ALLO_STANDARD = 15;
         int GEN_B_ALLO = 10;
-        int DUR_MAX = 20;
+        int DUR_MAX = 25;
         // Determine the capacity of the network
         int capacity = MAX_CAP;
         ret.put("capacity", capacity);
@@ -375,7 +386,7 @@ public class Core {
     public JTable makeRow(JTable table, UE ue) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         String[] row = new String[6];
-        row[0]=(Integer.toString(ue.getId()));
+        row[0]=(ue.getIdS());
         row[1]=(Boolean.toString(ue.isPremtCapable()));
         row[2]=(Boolean.toString(ue.isPremtVul()));
         row[3]=(ue.getAppType());

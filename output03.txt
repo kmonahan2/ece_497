@@ -1,0 +1,958 @@
+*********************
+*** TestCase03.csv ***
+
+	* Data Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 182		true			false				15						0|
+
+** UE 182 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* Data Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 182		true			false				15						2|
+| 015		true			false				15						0|
+
+** UE 015 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* Video Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						0|
+
+** UE 009 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* Video Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						4|
+| 104		false			false				15						0|
+
+** UE 104 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* Data Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						8|
+| 104		false			false				15						4|
+| 188		true			false				15						0|
+
+** UE 188 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* Data Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						12|
+| 104		false			false				15						8|
+| 188		true			false				15						4|
+| 031		true			true				15						0|
+
+** UE 031 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* Video Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						16|
+| 104		false			false				15						12|
+| 188		true			false				15						8|
+| 031		true			true				15						4|
+| 156		true			false				15						0|
+
+** UE 156 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+** UE 027 has not been admitted **
+** Due to: UE is callbarred.
+
+	* Data Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						22|
+| 104		false			false				15						18|
+| 188		true			false				15						14|
+| 031		true			true				15						10|
+| 156		true			false				15						6|
+| 062		false			true				15						0|
+
+** UE 062 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* Video Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						26|
+| 104		false			false				15						22|
+| 188		true			false				15						18|
+| 031		true			true				15						14|
+| 156		true			false				15						10|
+| 062		false			true				15						4|
+| 088		true			true				15						0|
+
+** UE 088 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* Video Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						30|
+| 104		false			false				15						26|
+| 188		true			false				15						22|
+| 031		true			true				15						18|
+| 156		true			false				15						14|
+| 062		false			true				15						8|
+| 088		true			true				15						4|
+| 184		true			true				15						0|
+
+** UE 184 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+** UE 019 has not been admitted **
+** Due to: UE is callbarred.
+
+	* Data Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						36|
+| 104		false			false				15						32|
+| 188		true			false				15						28|
+| 031		true			true				15						24|
+| 156		true			false				15						20|
+| 062		false			true				15						14|
+| 088		true			true				15						10|
+| 184		true			true				15						6|
+| 040		true			true				15						0|
+
+** UE 040 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* Data Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						40|
+| 104		false			false				15						36|
+| 188		true			false				15						32|
+| 031		true			true				15						28|
+| 156		true			false				15						24|
+| 062		false			true				15						18|
+| 088		true			true				15						14|
+| 184		true			true				15						10|
+| 040		true			true				15						4|
+| 191		true			true				15						0|
+
+** UE 191 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* Video Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						44|
+| 104		false			false				15						40|
+| 188		true			false				15						36|
+| 031		true			true				15						32|
+| 156		true			false				15						28|
+| 062		false			true				15						22|
+| 088		true			true				15						18|
+| 184		true			true				15						14|
+| 040		true			true				15						8|
+| 191		true			true				15						4|
+| 025		true			true				15						0|
+
+** UE 025 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* Video Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						48|
+| 104		false			false				15						44|
+| 188		true			false				15						40|
+| 031		true			true				15						36|
+| 156		true			false				15						32|
+| 062		false			true				15						26|
+| 088		true			true				15						22|
+| 184		true			true				15						18|
+| 040		true			true				15						12|
+| 191		true			true				15						8|
+| 025		true			true				15						4|
+| 111		true			true				15						0|
+
+** UE 111 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* Data Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						52|
+| 104		false			false				15						48|
+| 188		true			false				15						44|
+| 031		true			true				15						40|
+| 156		true			false				15						36|
+| 062		false			true				15						30|
+| 088		true			true				15						26|
+| 184		true			true				15						22|
+| 040		true			true				15						16|
+| 191		true			true				15						12|
+| 025		true			true				15						8|
+| 111		true			true				15						4|
+| 017		true			false				15						0|
+
+** UE 017 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* Video Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						56|
+| 104		false			false				15						52|
+| 188		true			false				15						48|
+| 031		true			true				15						44|
+| 156		true			false				15						40|
+| 062		false			true				15						34|
+| 088		true			true				15						30|
+| 184		true			true				15						26|
+| 040		true			true				15						20|
+| 191		true			true				15						16|
+| 025		true			true				15						12|
+| 111		true			true				15						8|
+| 017		true			false				15						4|
+| 037		false			false				15						0|
+
+** UE 037 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* Data Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						60|
+| 104		false			false				15						56|
+| 188		true			false				15						52|
+| 031		true			true				15						48|
+| 156		true			false				15						44|
+| 062		false			true				15						38|
+| 088		true			true				15						34|
+| 184		true			true				15						30|
+| 040		true			true				15						24|
+| 191		true			true				15						20|
+| 025		true			true				15						16|
+| 111		true			true				15						12|
+| 017		true			false				15						8|
+| 037		false			false				15						4|
+| 057		true			true				15						0|
+
+** UE 057 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* Data Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						64|
+| 104		false			false				15						60|
+| 188		true			false				15						56|
+| 031		true			true				15						52|
+| 156		true			false				15						48|
+| 062		false			true				15						42|
+| 088		true			true				15						38|
+| 184		true			true				15						34|
+| 040		true			true				15						28|
+| 191		true			true				15						24|
+| 025		true			true				15						20|
+| 111		true			true				15						16|
+| 017		true			false				15						12|
+| 037		false			false				15						8|
+| 057		true			true				15						4|
+| 063		true			true				15						0|
+
+** UE 063 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* Data Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						68|
+| 104		false			false				15						64|
+| 188		true			false				15						60|
+| 031		true			true				15						56|
+| 156		true			false				15						52|
+| 062		false			true				15						46|
+| 088		true			true				15						42|
+| 184		true			true				15						38|
+| 040		true			true				15						32|
+| 191		true			true				15						28|
+| 025		true			true				15						24|
+| 111		true			true				15						20|
+| 017		true			false				15						16|
+| 037		false			false				15						12|
+| 057		true			true				15						8|
+| 063		true			true				15						4|
+| 060		true			true				15						0|
+
+** UE 060 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* Data Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						72|
+| 104		false			false				15						68|
+| 188		true			false				15						64|
+| 031		true			true				15						60|
+| 156		true			false				15						56|
+| 062		false			true				15						50|
+| 088		true			true				15						46|
+| 184		true			true				15						42|
+| 040		true			true				15						36|
+| 191		true			true				15						32|
+| 025		true			true				15						28|
+| 111		true			true				15						24|
+| 017		true			false				15						20|
+| 037		false			false				15						16|
+| 057		true			true				15						12|
+| 063		true			true				15						8|
+| 060		true			true				15						4|
+| 199		false			true				15						0|
+
+** UE 199 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* Data Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						76|
+| 104		false			false				15						72|
+| 188		true			false				15						68|
+| 031		true			true				15						64|
+| 156		true			false				15						60|
+| 062		false			true				15						54|
+| 088		true			true				15						50|
+| 184		true			true				15						46|
+| 040		true			true				15						40|
+| 191		true			true				15						36|
+| 025		true			true				15						32|
+| 111		true			true				15						28|
+| 017		true			false				15						24|
+| 037		false			false				15						20|
+| 057		true			true				15						16|
+| 063		true			true				15						12|
+| 060		true			true				15						8|
+| 199		false			true				15						4|
+| 165		true			false				15						0|
+
+** UE 165 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* Data Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						80|
+| 104		false			false				15						76|
+| 188		true			false				15						72|
+| 031		true			true				15						68|
+| 156		true			false				15						64|
+| 062		false			true				15						58|
+| 088		true			true				15						54|
+| 184		true			true				15						50|
+| 040		true			true				15						44|
+| 191		true			true				15						40|
+| 025		true			true				15						36|
+| 111		true			true				15						32|
+| 017		true			false				15						28|
+| 037		false			false				15						24|
+| 057		true			true				15						20|
+| 063		true			true				15						16|
+| 060		true			true				15						12|
+| 199		false			true				15						8|
+| 165		true			false				15						4|
+| 006		true			true				15						0|
+
+** UE 006 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* Data Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						84|
+| 104		false			false				15						80|
+| 188		true			false				15						76|
+| 031		true			true				15						72|
+| 156		true			false				15						68|
+| 062		false			true				15						62|
+| 088		true			true				15						58|
+| 184		true			true				15						54|
+| 040		true			true				15						48|
+| 191		true			true				15						44|
+| 025		true			true				15						40|
+| 111		true			true				15						36|
+| 017		true			false				15						32|
+| 037		false			false				15						28|
+| 057		true			true				15						24|
+| 063		true			true				15						20|
+| 060		true			true				15						16|
+| 199		false			true				15						12|
+| 165		true			false				15						8|
+| 006		true			true				15						4|
+| 003		true			true				15						0|
+
+** UE 003 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+** UE 187 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 177 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 012 has not been admitted **
+** Due to: UE is callbarred.
+
+	* Data Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						94|
+| 104		false			false				15						90|
+| 188		true			false				15						86|
+| 031		true			true				15						82|
+| 156		true			false				15						78|
+| 062		false			true				15						72|
+| 088		true			true				15						68|
+| 184		true			true				15						64|
+| 040		true			true				15						58|
+| 191		true			true				15						54|
+| 025		true			true				15						50|
+| 111		true			true				15						46|
+| 017		true			false				15						42|
+| 037		false			false				15						38|
+| 057		true			true				15						34|
+| 063		true			true				15						30|
+| 060		true			true				15						26|
+| 199		false			true				15						22|
+| 165		true			false				15						18|
+| 006		true			true				15						14|
+| 003		true			true				15						10|
+| 023		true			true				15						0|
+
+** UE 023 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+** UE 193 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 018 has not been admitted **
+** Due to: priority did not meet threshold.
+
+	* Data Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						102|
+| 104		false			false				15						98|
+| 188		true			false				15						94|
+| 031		true			true				15						90|
+| 156		true			false				15						86|
+| 062		false			true				15						80|
+| 088		true			true				15						76|
+| 184		true			true				15						72|
+| 040		true			true				15						66|
+| 191		true			true				15						62|
+| 025		true			true				15						58|
+| 111		true			true				15						54|
+| 017		true			false				15						50|
+| 037		false			false				15						46|
+| 057		true			true				15						42|
+| 063		true			true				15						38|
+| 060		true			true				15						34|
+| 199		false			true				15						30|
+| 165		true			false				15						26|
+| 006		true			true				15						22|
+| 003		true			true				15						18|
+| 023		true			true				15						8|
+| 170		true			true				15						0|
+
+** UE 170 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+** UE 179 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 056 has not been admitted **
+** Due to: priority did not meet threshold.
+
+	* Video Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						110|
+| 104		false			false				15						106|
+| 188		true			false				15						102|
+| 031		true			true				15						98|
+| 156		true			false				15						94|
+| 062		false			true				15						88|
+| 088		true			true				15						84|
+| 184		true			true				15						80|
+| 040		true			true				15						74|
+| 191		true			true				15						70|
+| 025		true			true				15						66|
+| 111		true			true				15						62|
+| 017		true			false				15						58|
+| 037		false			false				15						54|
+| 057		true			true				15						50|
+| 063		true			true				15						46|
+| 060		true			true				15						42|
+| 199		false			true				15						38|
+| 165		true			false				15						34|
+| 006		true			true				15						30|
+| 003		true			true				15						26|
+| 023		true			true				15						16|
+| 170		true			true				15						8|
+| 029		true			false				15						0|
+
+** UE 029 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+** UE 004 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 026 has not been admitted **
+** Due to: UE is callbarred.
+
+** UE 038 has not been admitted **
+** Due to: UE is callbarred.
+
+** UE 112 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 021 has not been admitted **
+** Due to: priority did not meet threshold.
+
+	* Data Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						124|
+| 104		false			false				15						120|
+| 188		true			false				15						116|
+| 031		true			true				15						112|
+| 156		true			false				15						108|
+| 062		false			true				15						102|
+| 088		true			true				15						98|
+| 184		true			true				15						94|
+| 040		true			true				15						88|
+| 191		true			true				15						84|
+| 025		true			true				15						80|
+| 111		true			true				15						76|
+| 017		true			false				15						72|
+| 037		false			false				15						68|
+| 057		true			true				15						64|
+| 063		true			true				15						60|
+| 060		true			true				15						56|
+| 199		false			true				15						52|
+| 165		true			false				15						48|
+| 006		true			true				15						44|
+| 003		true			true				15						40|
+| 023		true			true				15						30|
+| 170		true			true				15						22|
+| 029		true			false				15						14|
+| 002		true			true				15						0|
+
+** UE 002 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+** UE 039 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 042 has not been admitted **
+** Due to: priority did not meet threshold.
+
+	* Data Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						132|
+| 104		false			false				15						128|
+| 188		true			false				15						124|
+| 031		true			true				15						120|
+| 156		true			false				15						116|
+| 062		false			true				15						110|
+| 088		true			true				15						106|
+| 184		true			true				15						102|
+| 040		true			true				15						96|
+| 191		true			true				15						92|
+| 025		true			true				15						88|
+| 111		true			true				15						84|
+| 017		true			false				15						80|
+| 037		false			false				15						76|
+| 057		true			true				15						72|
+| 063		true			true				15						68|
+| 060		true			true				15						64|
+| 199		false			true				15						60|
+| 165		true			false				15						56|
+| 006		true			true				15						52|
+| 003		true			true				15						48|
+| 023		true			true				15						38|
+| 170		true			true				15						30|
+| 029		true			false				15						22|
+| 002		true			true				15						8|
+| 192		true			true				15						0|
+
+** UE 192 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+** UE 065 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 013 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 043 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 200 has not been admitted **
+** Due to: priority did not meet threshold.
+
+	* Data Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						144|
+| 104		false			false				15						140|
+| 188		true			false				15						136|
+| 031		true			true				15						132|
+| 156		true			false				15						128|
+| 062		false			true				15						122|
+| 088		true			true				15						118|
+| 184		true			true				15						114|
+| 040		true			true				15						108|
+| 191		true			true				15						104|
+| 025		true			true				15						100|
+| 111		true			true				15						96|
+| 017		true			false				15						92|
+| 037		false			false				15						88|
+| 057		true			true				15						84|
+| 063		true			true				15						80|
+| 060		true			true				15						76|
+| 199		false			true				15						72|
+| 165		true			false				15						68|
+| 006		true			true				15						64|
+| 003		true			true				15						60|
+| 023		true			true				15						50|
+| 170		true			true				15						42|
+| 029		true			false				15						34|
+| 002		true			true				15						20|
+| 192		true			true				15						12|
+| 022		true			false				15						0|
+
+** UE 022 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+** UE 048 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 162 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 035 has not been admitted **
+** Due to: UE is callbarred.
+
+** UE 186 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 080 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 064 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 067 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 041 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 160 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 172 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 178 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 167 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 171 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 055 has not been admitted **
+** Due to: priority did not meet threshold.
+
+	* General Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 016		true			true				15						0|
+
+** UE 016 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* Video Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 009		true			false				15						180|
+| 104		false			false				15						176|
+| 188		true			false				15						172|
+| 031		true			true				15						168|
+| 156		true			false				15						164|
+| 062		false			true				15						158|
+| 088		true			true				15						154|
+| 184		true			true				15						150|
+| 040		true			true				15						144|
+| 191		true			true				15						140|
+| 025		true			true				15						136|
+| 111		true			true				15						132|
+| 017		true			false				15						128|
+| 037		false			false				15						124|
+| 057		true			true				15						120|
+| 063		true			true				15						116|
+| 060		true			true				15						112|
+| 199		false			true				15						108|
+| 165		true			false				15						104|
+| 006		true			true				15						100|
+| 003		true			true				15						96|
+| 023		true			true				15						86|
+| 170		true			true				15						78|
+| 029		true			false				15						70|
+| 002		true			true				15						56|
+| 192		true			true				15						48|
+| 022		true			false				15						36|
+| 059		true			false				15						0|
+
+** UE 059 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+** UE 105 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 089 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 079 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 008 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 090 has not been admitted **
+** Due to: priority did not meet threshold.
+
+	* General Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 016		true			true				15						9|
+| 190		true			true				15						0|
+
+** UE 190 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+** UE 161 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 163 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 030 has not been admitted **
+** Due to: UE is callbarred.
+
+** UE 046 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 194 has not been admitted **
+** Due to: UE is callbarred.
+
+	* General Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 016		true			true				15						16|
+| 190		true			true				15						7|
+| 129		true			false				15						0|
+
+** UE 129 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* General Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 016		true			true				15						18|
+| 190		true			true				15						9|
+| 129		true			false				15						2|
+| 045		true			false				15						0|
+
+** UE 045 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+** UE 154 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 051 has not been admitted **
+** Due to: UE is callbarred.
+
+	* General Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 016		true			true				15						22|
+| 190		true			true				15						13|
+| 129		true			false				15						6|
+| 045		true			false				15						4|
+| 036		true			false				15						0|
+
+** UE 036 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+** UE 180 has not been admitted **
+** Due to: priority did not meet threshold.
+
+	* General Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 016		true			true				15						25|
+| 190		true			true				15						16|
+| 129		true			false				15						9|
+| 045		true			false				15						7|
+| 036		true			false				15						3|
+| 033		true			false				15						0|
+
+** UE 033 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+	* General Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 016		true			true				15						27|
+| 190		true			true				15						18|
+| 129		true			false				15						11|
+| 045		true			false				15						9|
+| 036		true			false				15						5|
+| 033		true			false				15						2|
+| 189		true			false				15						0|
+
+** UE 189 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+** UE 001 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 157 has not been admitted **
+** Due to: priority did not meet threshold.
+
+	* General Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 016		true			true				15						31|
+| 190		true			true				15						22|
+| 129		true			false				15						15|
+| 045		true			false				15						13|
+| 036		true			false				15						9|
+| 033		true			false				15						6|
+| 189		true			false				15						4|
+| 024		true			true				15						0|
+
+** UE 024 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+** UE 044 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 166 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 068 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 155 has not been admitted **
+** Due to: UE is callbarred.
+
+	* General Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 016		true			true				15						37|
+| 190		true			true				15						28|
+| 129		true			false				15						21|
+| 045		true			false				15						19|
+| 036		true			false				15						15|
+| 033		true			false				15						12|
+| 189		true			false				15						10|
+| 024		true			true				15						6|
+| 158		true			true				15						0|
+
+** UE 158 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+** UE 198 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 053 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 185 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 149 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 047 has not been admitted **
+** Due to: priority did not meet threshold.
+
+	* General Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 016		true			true				15						44|
+| 190		true			true				15						35|
+| 129		true			false				15						28|
+| 045		true			false				15						26|
+| 036		true			false				15						22|
+| 033		true			false				15						19|
+| 189		true			false				15						17|
+| 024		true			true				15						13|
+| 158		true			true				15						7|
+| 183		true			true				15						0|
+
+** UE 183 has been admitted **
+** Bandwidth Allocated: 15 Mbps.
+
+** UE 054 has not been admitted **
+** Due to: UE is callbarred.
+
+** UE 176 has been admitted **
+** Bandwidth Allocated: 0 Mbps.
+
+** UE 085 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 014 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 020 has been admitted **
+** Bandwidth Allocated: 0 Mbps.
+
+** UE 007 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 058 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 169 has not been admitted **
+** Due to: UE is callbarred.
+
+** UE 159 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 032 has not been admitted **
+** Due to: UE is callbarred.
+
+** UE 125 has not been admitted **
+** Due to: UE is callbarred.
+
+** UE 174 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 168 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 010 has been admitted **
+** Bandwidth Allocated: 0 Mbps.
+
+** UE 195 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 066 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 005 has not been admitted **
+** Due to: UE is callbarred.
+
+** UE 034 has not been admitted **
+** Due to: UE is callbarred.
+
+** UE 142 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 152 has not been admitted **
+** Due to: UE is callbarred.
+
+** UE 181 has been admitted **
+** Bandwidth Allocated: 0 Mbps.
+
+** UE 141 has been admitted **
+** Bandwidth Allocated: 0 Mbps.
+
+** UE 050 has been admitted **
+** Bandwidth Allocated: 0 Mbps.
+
+** UE 011 has been admitted **
+** Bandwidth Allocated: 0 Mbps.
+
+** UE 164 has not been admitted **
+** Due to: priority did not meet threshold.
+
+** UE 153 has been admitted **
+** Bandwidth Allocated: 0 Mbps.
