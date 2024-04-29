@@ -134,6 +134,7 @@ public class UE {
     public void gotPremptUE(){
         this.admitted = false;
         this.reason = "UE was prempted due to capacity";
+        this.setBandAllo("N", 0);   
         System.out.println();
         // print statement to user
         System.out.println("Premption Note:");
