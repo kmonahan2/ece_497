@@ -17,6 +17,11 @@ public class Core {
     //     \\
     public boolean AMF (UE ue) {
         boolean admissionResult = false;
+
+        if (ue.isAdmitted()) {
+            ue.setReason("UE is already admitted");
+            return false;
+        }
         
         admissionResult = AUSF(ue);
         // if admitted, try to allocated bandwidth
@@ -62,7 +67,7 @@ public class Core {
         if (!authResult) {
             // Handle unknown UE
             ue.setKnown(false);
-            ue.setReason("UE is unkown");
+            ue.setReason("UE is unknown");
         } else if (cb) {
             // Handle callbar UE
             authResult = false;
@@ -221,6 +226,7 @@ public class Core {
                             ue.setBandAllo("D", BANDALLO);
                             // set allocated flag
                             allocated_flag = true;
+                            break;
                         }
                     }
                 }
@@ -268,7 +274,7 @@ public class Core {
                         // if an existing entry is prempt vulnerable and the duration is long enough
                         if (udm.getVideo_bd().getValueAt(p, 2) == "true" && (Integer)videoBD.getValueAt(p,5) > DUR_MAX) {
                             // notify prempted UE, reset UE Object's values
-                            int kickId =(int)dataBD.getValueAt(p,0);
+                            int kickId = Integer.parseInt(dataBD.getValueAt(p,0).toString());
                             // notify prempted UE of kicking
                             udm.getEnteredUEInst(kickId).gotPremptUE();
                             // replace the values in the bandwidth pipe 
@@ -283,6 +289,7 @@ public class Core {
                             ue.setBandAllo("V", BANDALLO);
                             // set allocated flag
                             allocated_flag = true;
+                            break;
                         }
                     }
                 // If the UE is not Prempt Capable
@@ -340,6 +347,7 @@ public class Core {
                             ue.setBandAllo("V", BANDALLO);
                             // set allocated flag
                             allocated_flag = true;
+                            break;
                         }
                     }
                 }
