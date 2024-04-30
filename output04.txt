@@ -341,16 +341,16 @@
 ** Bandwidth Allocated: 15 Mbps.
 
 ** UE 073 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 133 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 008 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 113 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 026 has not been admitted **
 ** Due to: UE is callbarred.
@@ -359,28 +359,49 @@
 ** Due to: UE is callbarred.
 
 ** UE 134 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 007 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 107 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
-	* General Pipe *
-	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
-| 097		true			false				15						0|
+Premption Note:
+** UE 016 has been prempted due to capacity. **
+
+Premption Note:
+** UE 130 has been prempted due to capacity. **
+
+Premption Note:
+** UE 096 has been prempted due to capacity. **
+
+Premption Note:
+** UE 101 has been prempted due to capacity. **
+
+Premption Note:
+** UE 083 has been prempted due to capacity. **
+
+Premption Note:
+** UE 069 has been prempted due to capacity. **
+
+Premption Note:
+** UE 119 has been prempted due to capacity. **
+
+Premption Note:
+** UE 082 has been prempted due to capacity. **
+
+Premption Note:
+** UE 066 has been prempted due to capacity. **
 
 ** UE 097 has been admitted **
 ** Bandwidth Allocated: 15 Mbps.
 
 ** UE 132 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
-	* General Pipe *
-	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
-| 097		true			false				15						3|
-| 084		true			true				15						0|
+Premption Note:
+** UE 117 has been prempted due to capacity. **
 
 ** UE 084 has been admitted **
 ** Bandwidth Allocated: 15 Mbps.
@@ -389,194 +410,155 @@
 ** Due to: UE is callbarred.
 
 ** UE 049 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
-	* General Pipe *
-	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
-| 097		true			false				15						7|
-| 084		true			true				15						4|
-| 115		true			true				15						0|
+Premption Note:
+** UE 114 has been prempted due to capacity. **
+
+Premption Note:
+** UE 094 has been prempted due to capacity. **
 
 ** UE 115 has been admitted **
 ** Bandwidth Allocated: 15 Mbps.
 
 ** UE 077 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 044 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 100 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 062 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 118 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 	* General Pipe *
 	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
-| 097		true			false				15						14|
-| 084		true			true				15						11|
-| 115		true			true				15						7|
 | 087		true			false				15						0|
 
 ** UE 087 has been admitted **
 ** Bandwidth Allocated: 15 Mbps.
 
-	* General Pipe *
-	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
-| 097		true			false				15						16|
-| 084		true			true				15						13|
-| 115		true			true				15						9|
-| 087		true			false				15						2|
-| 078		true			true				15						0|
+Premption Note:
+** UE 095 has been prempted due to capacity. **
+
+Premption Note:
+** UE 067 has been prempted due to capacity. **
+
+Premption Note:
+** UE 144 has been prempted due to capacity. **
 
 ** UE 078 has been admitted **
 ** Bandwidth Allocated: 15 Mbps.
 
 ** UE 004 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 001 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 018 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 151 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 099 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 021 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 046 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 121 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 074 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 139 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 092 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 047 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 102 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
-	* General Pipe *
-	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
-| 097		true			false				15						31|
-| 084		true			true				15						28|
-| 115		true			true				15						24|
-| 087		true			false				15						17|
-| 078		true			true				15						15|
-| 057		true			true				15						0|
+Premption Note:
+** UE 084 has been prempted due to capacity. **
 
 ** UE 057 has been admitted **
 ** Bandwidth Allocated: 15 Mbps.
 
 ** UE 063 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 071 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
-	* General Pipe *
-	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
-| 097		true			false				15						35|
-| 084		true			true				15						32|
-| 115		true			true				15						28|
-| 087		true			false				15						21|
-| 078		true			true				15						19|
-| 057		true			true				15						4|
-| 098		true			false				15						0|
+Premption Note:
+** UE 115 has been prempted due to capacity. **
+
+Premption Note:
+** UE 115 has been prempted due to capacity. **
 
 ** UE 098 has been admitted **
 ** Bandwidth Allocated: 15 Mbps.
 
 ** UE 135 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 106 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 031 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 064 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 120 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 038 has not been admitted **
 ** Due to: UE is callbarred.
 
-	* General Pipe *
-	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
-| 097		true			false				15						43|
-| 084		true			true				15						40|
-| 115		true			true				15						36|
-| 087		true			false				15						29|
-| 078		true			true				15						27|
-| 057		true			true				15						12|
-| 098		true			false				15						8|
-| 122		true			true				15						0|
+Premption Note:
+** UE 078 has been prempted due to capacity. **
+
+Premption Note:
+** UE 078 has been prempted due to capacity. **
+
+Premption Note:
+** UE 078 has been prempted due to capacity. **
 
 ** UE 122 has been admitted **
 ** Bandwidth Allocated: 15 Mbps.
 
 ** UE 131 has not been admitted **
-** Due to: priority did not meet threshold.
-
-	* General Pipe *
-	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
-| 097		true			false				15						46|
-| 084		true			true				15						43|
-| 115		true			true				15						39|
-| 087		true			false				15						32|
-| 078		true			true				15						30|
-| 057		true			true				15						15|
-| 098		true			false				15						11|
-| 122		true			true				15						3|
-| 138		true			false				15						0|
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 138 has been admitted **
-** Bandwidth Allocated: 15 Mbps.
+** Bandwidth Allocated: 0 Mbps.
 
 ** UE 072 has not been admitted **
-** Due to: priority did not meet threshold.
-
-	* General Pipe *
-	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
-| 097		true			false				15						49|
-| 084		true			true				15						46|
-| 115		true			true				15						42|
-| 087		true			false				15						35|
-| 078		true			true				15						33|
-| 057		true			true				15						18|
-| 098		true			false				15						14|
-| 122		true			true				15						6|
-| 138		true			false				15						3|
-| 003		true			true				15						0|
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 003 has been admitted **
-** Bandwidth Allocated: 15 Mbps.
+** Bandwidth Allocated: 0 Mbps.
 
 ** UE 116 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 146 has been admitted **
 ** Bandwidth Allocated: 0 Mbps.
@@ -584,29 +566,32 @@
 ** UE 036 has been admitted **
 ** Bandwidth Allocated: 0 Mbps.
 
+Premption Note:
+** UE 057 has been prempted due to capacity. **
+
 ** UE 033 has been admitted **
-** Bandwidth Allocated: 0 Mbps.
+** Bandwidth Allocated: 15 Mbps.
 
 ** UE 140 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 147 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 058 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 035 has not been admitted **
 ** Due to: UE is callbarred.
 
 ** UE 124 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 061 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 070 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 006 has been admitted **
 ** Bandwidth Allocated: 0 Mbps.
@@ -615,28 +600,37 @@
 ** Bandwidth Allocated: 0 Mbps.
 
 ** UE 086 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 048 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 027 has not been admitted **
 ** Due to: UE is callbarred.
 
 ** UE 053 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 068 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 076 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 056 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
+
+Premption Note:
+** UE 122 has been prempted due to capacity. **
+
+Premption Note:
+** UE 122 has been prempted due to capacity. **
+
+Premption Note:
+** UE 122 has been prempted due to capacity. **
 
 ** UE 143 has been admitted **
-** Bandwidth Allocated: 0 Mbps.
+** Bandwidth Allocated: 15 Mbps.
 
 ** UE 110 has been admitted **
 ** Bandwidth Allocated: 0 Mbps.
@@ -651,25 +645,36 @@
 ** Bandwidth Allocated: 0 Mbps.
 
 ** UE 103 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 108 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 081 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
+
+	* General Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 087		true			false				15						75|
+| 052		true			true				15						0|
 
 ** UE 052 has been admitted **
-** Bandwidth Allocated: 0 Mbps.
+** Bandwidth Allocated: 15 Mbps.
 
 ** UE 093 has been admitted **
 ** Bandwidth Allocated: 0 Mbps.
 
+	* General Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 087		true			false				15						79|
+| 052		true			true				15						4|
+| 173		true			false				15						0|
+
 ** UE 173 has been admitted **
-** Bandwidth Allocated: 0 Mbps.
+** Bandwidth Allocated: 15 Mbps.
 
 ** UE 197 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 109 has not been admitted **
 ** Due to: UE is callbarred.
@@ -677,35 +682,42 @@
 ** UE 051 has not been admitted **
 ** Due to: UE is callbarred.
 
+	* General Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 087		true			false				15						84|
+| 052		true			true				15						9|
+| 173		true			false				15						5|
+| 196		true			true				15						0|
+
 ** UE 196 has been admitted **
-** Bandwidth Allocated: 0 Mbps.
+** Bandwidth Allocated: 15 Mbps.
 
 ** UE 042 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 011 has been admitted **
 ** Bandwidth Allocated: 0 Mbps.
 
 ** UE 148 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 041 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 075 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 019 has not been admitted **
 ** Due to: UE is callbarred.
 
 ** UE 137 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 040 has been admitted **
 ** Bandwidth Allocated: 0 Mbps.
 
 ** UE 039 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 054 has not been admitted **
 ** Due to: UE is callbarred.
@@ -717,13 +729,21 @@
 ** Bandwidth Allocated: 0 Mbps.
 
 ** UE 028 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
 
 ** UE 050 has been admitted **
 ** Bandwidth Allocated: 0 Mbps.
 
+	* General Pipe *
+	UE		Prempt_Capable		Prempt_Vul		Bandwidth		Duration		
+| 087		true			false				15						104|
+| 052		true			true				15						29|
+| 173		true			false				15						25|
+| 196		true			true				15						20|
+| 091		true			true				15						0|
+
 ** UE 091 has been admitted **
-** Bandwidth Allocated: 0 Mbps.
+** Bandwidth Allocated: 15 Mbps.
 
 ** UE 060 has not been admitted **
-** Due to: priority did not meet threshold.
+** Due to: priority did not meet threshold at capacity.
