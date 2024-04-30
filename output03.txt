@@ -979,4 +979,3 @@ Premption Note:
 
 ** UE 153 has been admitted **
 ** Bandwidth Allocated: 0 Mbps.
-
