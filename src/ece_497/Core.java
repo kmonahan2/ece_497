@@ -361,7 +361,7 @@ public class Core {
         HashMap<String, Integer> ret = new HashMap<String, Integer>();
         // SET BY NETWORK OWNERS..
         int MAX_CAP = 20;
-        int P_THRESHOLD = 3;
+        int P_THRESHOLD = 2;
         int B_ALLO_STANDARD = 15;
         int GEN_B_ALLO = 10;
         int DUR_MAX = 25;
