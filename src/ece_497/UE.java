@@ -123,6 +123,15 @@ public class UE {
         return 0;
     }
 
+    public String getBandChar() {
+        Set<String> type = this.band_allo.keySet();
+        String ret = null;
+        Iterator<String> it = type.iterator();
+        ret = it.next();
+
+        return ret;
+    }
+
     public String getReason() {
         return this.reason;
     }

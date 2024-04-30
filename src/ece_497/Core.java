@@ -97,10 +97,14 @@ public class Core {
                     }
 
                     if (flag == true){
-                    // notify prempted UE of kicking
+                        // remove entered ue from DB? add check in UDM
+                        if (udm.getEntered_ue().get(ueKickId).getBandInt() > 0) {
+                            udm.removeEntry(udm.getEntered_ue().get(ueKickId));
+                        } 
+                        // notify prempted UE of kicking
                         udm.getEntered_ue().get(ueKickId).gotPremptUE();
                     }
-                    // remove entered ue from DB? add check in UDM
+                    
                 }
                 } else {
                     // Handle authentication for UE within capacity

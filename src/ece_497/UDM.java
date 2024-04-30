@@ -145,6 +145,33 @@ public class UDM {
         this.count = count;
     }
 
+
+    public synchronized void removeEntry(UE ue) {
+        switch(ue.getBandChar()) {
+            case "D":
+                for (int i = 0; i < data_bd.getRowCount(); i++) {
+                    if (data_bd.getValueAt(i,0) == ue.getIdS()) {
+                        ((DefaultTableModel) data_bd.getModel()).removeRow(i);
+                    }
+                }
+                break;
+            case "V":
+                for (int i = 0; i < video_bd.getRowCount(); i++) {
+                    if (video_bd.getValueAt(i,0) == ue.getIdS()) {
+                        ((DefaultTableModel) video_bd.getModel()).removeRow(i);
+                    }
+                }
+                break;
+            case "G":
+                for (int i = 0; i < general_bd.getRowCount(); i++) {
+                    if (general_bd.getValueAt(i,0) == ue.getIdS()) {
+                        ((DefaultTableModel) general_bd.getModel()).removeRow(i);
+                    }
+                }
+                break;
+        }
+    }
+
     // helper function
     public synchronized void updateDuration() {
         for (int i = 0; i < general_bd.getRowCount(); i++) {
