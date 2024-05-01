@@ -1,4 +1,4 @@
 {
   "ignoredFiles": ["tsconfig.json"],
-  "ignoredExtensions": [".class", ".bin"]
+  "ignoredExtensions": [".class", ".bin", ".jar", ".json"]
 }
